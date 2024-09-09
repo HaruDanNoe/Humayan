@@ -3,18 +3,18 @@
         <item
             android:id="@+id/nav_fragment_one"
             android:title="@string/menu_one" />
-        <item
-            android:id="@+id/nav_fragment_two"
-            android:title="@string/menu_two" />
-        <item
-            android:id="@+id/nav_fragment_three"
-            android:title="@string/menu_three" />
-        <item
-            android:id="@+id/nav_fragment_four"
-            android:title="@string/menu_four" />
-        <item
-            android:id="@+id/nav_fragment_five"
-            android:title="@string/menu_five" />
+<!--        <item-->
+<!--            android:id="@+id/nav_fragment_two"-->
+<!--            android:title="@string/menu_two" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_fragment_three"-->
+<!--            android:title="@string/menu_three" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_fragment_four"-->
+<!--            android:title="@string/menu_four" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_fragment_five"-->
+<!--            android:title="@string/menu_five" />-->
         <item
             android:id="@+id/nav_fragment_six"
             android:title="@string/menu_six" />

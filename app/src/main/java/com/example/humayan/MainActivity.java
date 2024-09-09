@@ -52,12 +52,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
             navigationView.setCheckedItem(R.id.nav_fragment_one);
         }
-        Log.d(TAG, "onCreate called");
-
-        // Display a toast with 3 seconds delay
-        handler.postDelayed(() -> {
-            Toast.makeText(MainActivity.this, "onCreate called", Toast.LENGTH_LONG).show();
-        }, 3000);
+//        Log.d(TAG, "onCreate called");
+//
+//        // Display a toast with 3 seconds delay
+//        handler.postDelayed(() -> {
+//            Toast.makeText(MainActivity.this, "onCreate called", Toast.LENGTH_LONG).show();
+//        }, 3000);
     }
 
     @Override
@@ -76,15 +76,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Determine which fragment to show based on the menu item selected
         if (id == R.id.nav_fragment_one) {
             fragment = new FragmentOne();
-        } else if (id == R.id.nav_fragment_two) {
-            fragment = new FragmentTwo();  // Add more fragments as needed
-        } else if(id == R.id.nav_fragment_three){
-            fragment = new FragmentThree();
-        } else if(id == R.id.nav_fragment_four){
-            fragment = new FragmentFour();
-        } else if (id == R.id.nav_fragment_five){
-            fragment = new FragmentFive();
-        } else if (id == R.id.nav_fragment_six){
+        }
+//        else if (id == R.id.nav_fragment_two) {
+//            fragment = new FragmentTwo();  // Add more fragments as needed
+//        } else if(id == R.id.nav_fragment_three){
+//            fragment = new FragmentThree();
+//        } else if(id == R.id.nav_fragment_four){
+//            fragment = new FragmentFour();
+//        } else if (id == R.id.nav_fragment_five){
+//            fragment = new FragmentFive();
+//        }
+        else if (id == R.id.nav_fragment_six){
             fragment = new FragmentSix();
         }
 
@@ -101,72 +103,72 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart called");
-
-        handler.postDelayed(() -> {
-            Toast.makeText(MainActivity.this, "onStart called", Toast.LENGTH_LONG).show();
-        }, 3000);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume called");
-
-        handler.postDelayed(() -> {
-            Toast.makeText(MainActivity.this, "onResume called", Toast.LENGTH_LONG).show();
-        }, 3000);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause called");
-
-        handler.postDelayed(() -> {
-            Toast.makeText(MainActivity.this, "onPause called", Toast.LENGTH_LONG).show();
-        }, 3000);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop called");
-
-        handler.postDelayed(() -> {
-            Toast.makeText(MainActivity.this, "onStop called", Toast.LENGTH_LONG).show();
-        }, 3000);
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "onRestart called");
-
-        handler.postDelayed(() -> {
-            Toast.makeText(MainActivity.this, "onRestart called", Toast.LENGTH_LONG).show();
-        }, 3000);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy called");
-
-        handler.postDelayed(() -> {
-            Toast.makeText(MainActivity.this, "onDestroy called", Toast.LENGTH_LONG).show();
-        }, 3000);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Log.d(TAG, "onStart called");
+//
+//        handler.postDelayed(() -> {
+//            Toast.makeText(MainActivity.this, "onStart called", Toast.LENGTH_LONG).show();
+//        }, 3000);
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Log.d(TAG, "onResume called");
+//
+//        handler.postDelayed(() -> {
+//            Toast.makeText(MainActivity.this, "onResume called", Toast.LENGTH_LONG).show();
+//        }, 3000);
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Log.d(TAG, "onPause called");
+//
+//        handler.postDelayed(() -> {
+//            Toast.makeText(MainActivity.this, "onPause called", Toast.LENGTH_LONG).show();
+//        }, 3000);
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Log.d(TAG, "onStop called");
+//
+//        handler.postDelayed(() -> {
+//            Toast.makeText(MainActivity.this, "onStop called", Toast.LENGTH_LONG).show();
+//        }, 3000);
+//    }
+//
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        Log.d(TAG, "onRestart called");
+//
+//        handler.postDelayed(() -> {
+//            Toast.makeText(MainActivity.this, "onRestart called", Toast.LENGTH_LONG).show();
+//        }, 3000);
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Log.d(TAG, "onDestroy called");
+//
+//        handler.postDelayed(() -> {
+//            Toast.makeText(MainActivity.this, "onDestroy called", Toast.LENGTH_LONG).show();
+//        }, 3000);
+//    }
 }
