@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Humayan</string>
+    <string name="open">Open</string> <!-- Add this line -->
+    <string name="close">Close</string> <!-- Add this line -->
+    <string name="menu_one">Home</string>
+    <string name="menu_two">Soil PH Level</string>
+    <string name="menu_three">Soil Moisture</string>
+    <string name="menu_four">Profile</string>
+    <string name="menu_five">Weather</string>
+    <string name="menu_six">Settings</string>
+</resources>
