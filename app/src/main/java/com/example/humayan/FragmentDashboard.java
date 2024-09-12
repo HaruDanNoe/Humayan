@@ -12,13 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class FragmentOne extends Fragment {
+public class FragmentDashboard extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_fragment_one, container, false);
+        View view = inflater.inflate(R.layout.activity_fragment_dashboard, container, false);
 
         // Find buttons by ID
         Button soilPHLevelButton = view.findViewById(R.id.button2);

@@ -1,90 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     tools:context=".FragmentFour">
 
+    <!-- TextView above the EditText -->
+
+    <!-- EditText between TextView and ImageView -->
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:gravity="center"
         android:text="Water Depth"
-        android:textSize="24sp" />
-    <!--    &lt;!&ndash; Profile Image &ndash;&gt;-->
-<!--    <ImageView-->
-<!--        android:id="@+id/profile_image"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_marginTop="32dp"-->
-<!--        android:src="@drawable/profile_picture"-->
-<!--        android:contentDescription="Profile Image"-->
-<!--        android:background="@drawable/profile_image_border"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<!--    &lt;!&ndash; User's Name &ndash;&gt;-->
-<!--    <TextView-->
-<!--        android:id="@+id/profile_name"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:text="John Doe"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/profile_image"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+    <!--        android:background="@drawable/edit_text_background" /> &lt;!&ndash; Optional: Custom background &ndash;&gt;-->
 
-<!--    &lt;!&ndash; Birthdate &ndash;&gt;-->
-<!--    <TextView-->
-<!--        android:id="@+id/profile_birthdate"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:text="Birthdate: January 1, 1990"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/profile_name"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+    <!-- ImageView below the EditText -->
 
-<!--    &lt;!&ndash; Address &ndash;&gt;-->
-<!--    <TextView-->
-<!--        android:id="@+id/profile_address"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:text="Address: 123 Main St, City, State"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/profile_birthdate"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:hint="Enter depth"
+        android:textColor="@color/black"
+        android:inputType="number"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
-<!--    &lt;!&ndash; Zip Code &ndash;&gt;-->
-<!--    <TextView-->
-<!--        android:id="@+id/profile_zip_code"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:text="Zip Code: 12345"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/profile_address"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="273dp"
+        android:layout_height="159dp"
+        android:layout_marginTop="28dp"
+        android:contentDescription="Graph Image"
+        android:src="@drawable/line_graph"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
-<!--    &lt;!&ndash; Nationality &ndash;&gt;-->
-<!--    <TextView-->
-<!--        android:id="@+id/profile_nationality"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:text="Nationality: American"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/profile_zip_code"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="History"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

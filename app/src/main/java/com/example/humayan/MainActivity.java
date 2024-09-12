@@ -11,10 +11,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Handler handler = new Handler();
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -48,10 +48,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Load the default fragment (if needed)
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new FragmentOne())
+                    .replace(R.id.fragment_container, new FragmentHome())
                     .commit();
-            navigationView.setCheckedItem(R.id.nav_fragment_one);
+            navigationView.setCheckedItem(R.id.nav_fragment_home);
         }
+
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // Load the default fragment
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
+        }
+
+        // Updated method to set the item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
+                int id = item.getItemId();
+                if (id == R.id.nav_home) {
+                    selectedFragment = new FragmentHome();
+                } else if (id == R.id.nav_dashboard) {
+                    selectedFragment = new FragmentDashboard(); // Assuming FragmentTwo is another fragment
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                return true;
+            }
+        });
+
 //        Log.d(TAG, "onCreate called");
 //
 //        // Display a toast with 3 seconds delay
@@ -59,6 +86,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //            Toast.makeText(MainActivity.this, "onCreate called", Toast.LENGTH_LONG).show();
 //        }, 3000);
     }
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -74,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         // Determine which fragment to show based on the menu item selected
-        if (id == R.id.nav_fragment_one) {
-            fragment = new FragmentOne();
+        if (id == R.id.nav_fragment_home) {
+            fragment = new FragmentDashboard();
         }
 //        else if (id == R.id.nav_fragment_two) {
 //            fragment = new FragmentTwo();  // Add more fragments as needed
@@ -86,8 +117,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        } else if (id == R.id.nav_fragment_five){
 //            fragment = new FragmentFive();
 //        }
-        else if (id == R.id.nav_fragment_six){
-            fragment = new FragmentSix();
+        else if (id == R.id.nav_fragment_settings){
+            fragment = new FragmentSettings();
         }
 
         // Replace the fragment if it exists

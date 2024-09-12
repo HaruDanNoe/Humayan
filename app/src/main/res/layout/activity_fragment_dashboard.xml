@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rowCount="2"
+        android:columnCount="2"
+        android:layout_centerInParent="true"
+        android:alignmentMode="alignMargins"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:clipChildren="false">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:background="@drawable/rounded_button"
+            android:text="Soil Moisture"
+            android:textColor="@android:color/white"
+            android:textColorLink="@color/bottom_green"
+            app:strokeColor="@color/bottom_green" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:background="@drawable/rounded_button"
+            android:text="Soil PH Level"
+            android:textColor="@android:color/white"
+            android:textColorLink="@color/bottom_green" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:background="@drawable/rounded_button"
+            android:text="Water Depth"
+            android:textColor="@android:color/white"
+            android:textColorLink="@color/bottom_green" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:background="@drawable/rounded_button"
+            android:text="Weather"
+            android:textColor="@android:color/white"
+            android:textColorLink="@color/bottom_green" />
+
+    </GridLayout>
+</RelativeLayout>

@@ -3,6 +3,7 @@
     <style name="Base.Theme.Humayan" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="buttonStyle">@drawable/rounded_button</item>
     </style>
 
     <style name="Theme.Humayan" parent="Base.Theme.Humayan" />
