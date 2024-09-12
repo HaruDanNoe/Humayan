@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Load the default fragment (if needed)
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new FragmentHome())
+                    .replace(R.id.fragment_container, new FragmentDashboard())
                     .commit();
-            navigationView.setCheckedItem(R.id.nav_fragment_home);
+            navigationView.setCheckedItem(R.id.nav_dashboard);
         }
 
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Load the default fragment
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentDashboard()).commit();
         }
 
         // Updated method to set the item selected listener
@@ -68,9 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
                 int id = item.getItemId();
-                if (id == R.id.nav_home) {
-                    selectedFragment = new FragmentHome();
-                } else if (id == R.id.nav_dashboard) {
+                if (id == R.id.nav_dashboard) {
                     selectedFragment = new FragmentDashboard(); // Assuming FragmentTwo is another fragment
                 }
 
@@ -105,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         // Determine which fragment to show based on the menu item selected
-        if (id == R.id.nav_fragment_home) {
+        if (id == R.id.nav_dashboard) {
             fragment = new FragmentDashboard();
         }
 //        else if (id == R.id.nav_fragment_two) {
