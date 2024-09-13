@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,17 +22,17 @@ public class FragmentDashboard extends Fragment {
         View view = inflater.inflate(R.layout.activity_fragment_dashboard, container, false);
 
         // Find buttons by ID
-        Button soilPHLevelButton = view.findViewById(R.id.button2);
-        Button soilMoistureButton = view.findViewById(R.id.button3);
+        ImageButton soilPHLevelButton = view.findViewById(R.id.button_ph);
+        ImageButton soilMoistureButton = view.findViewById(R.id.button_moisture);
 
-        Button waterDepthButton = view.findViewById(R.id.button4);
-        Button weatherButton = view.findViewById(R.id.button5);
+        ImageButton waterDepthButton = view.findViewById(R.id.button_water_depth);
+        ImageButton weatherButton = view.findViewById(R.id.button_weather);
 
         // Set onClickListeners
-        soilMoistureButton.setOnClickListener(v -> replaceFragment(new FragmentTwo()));
-        soilPHLevelButton.setOnClickListener(v -> replaceFragment(new FragmentThree()));
-        waterDepthButton.setOnClickListener(v -> replaceFragment(new FragmentFour()));
-        weatherButton.setOnClickListener(v -> replaceFragment(new FragmentFive()));
+        soilMoistureButton.setOnClickListener(v -> replaceFragment(new FragmentPH()));
+        soilPHLevelButton.setOnClickListener(v -> replaceFragment(new FragmentMoisture()));
+        waterDepthButton.setOnClickListener(v -> replaceFragment(new FragmentWater()));
+        weatherButton.setOnClickListener(v -> replaceFragment(new FragmentWeather()));
 
         return view;
     }

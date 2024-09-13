@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentTwo">
+    tools:context=".FragmentMoisture">
 
     <!-- TextView above the EditText -->
 
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:gravity="center"
-        android:text="Soil PH Level"
+        android:text="Moisture Level"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:hint="Enter PH Level"
+        android:hint="Enter Moisture Level"
         android:textColor="@color/black"
         android:inputType="number"
         android:padding="8dp"

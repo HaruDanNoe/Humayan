@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         // Determine which fragment to show based on the menu item selected
-        if (id == R.id.nav_dashboard) {
+        if (id == R.id.nav_fragment_dashboard) {
             fragment = new FragmentDashboard();
         }
 //        else if (id == R.id.nav_fragment_two) {
