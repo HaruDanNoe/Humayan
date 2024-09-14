@@ -10,14 +10,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-public class FragmentSettings extends Fragment {
-
+public class FragmentHome extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Settings");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
 
-        return inflater.inflate(R.layout.activity_fragment_settings, container, false);
+
+        return inflater.inflate(R.layout.activity_fragment_home, container, false);
+
     }
 }

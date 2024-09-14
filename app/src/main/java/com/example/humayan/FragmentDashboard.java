@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,16 +22,17 @@ public class FragmentDashboard extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_fragment_dashboard, container, false);
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Dashboard");
+
         // Find buttons by ID
         ImageButton soilPHLevelButton = view.findViewById(R.id.button_ph);
         ImageButton soilMoistureButton = view.findViewById(R.id.button_moisture);
-
         ImageButton waterDepthButton = view.findViewById(R.id.button_water_depth);
         ImageButton weatherButton = view.findViewById(R.id.button_weather);
 
         // Set onClickListeners
-        soilMoistureButton.setOnClickListener(v -> replaceFragment(new FragmentPH()));
         soilPHLevelButton.setOnClickListener(v -> replaceFragment(new FragmentMoisture()));
+        soilMoistureButton.setOnClickListener(v -> replaceFragment(new FragmentPH()));
         waterDepthButton.setOnClickListener(v -> replaceFragment(new FragmentWater()));
         weatherButton.setOnClickListener(v -> replaceFragment(new FragmentWeather()));
 

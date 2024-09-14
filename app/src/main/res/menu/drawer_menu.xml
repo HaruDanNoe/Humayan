@@ -1,22 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_fragment_dashboard"
-            android:title="@string/menu_one" />
+<!--    <group android:checkableBehavior="single">-->
 <!--        <item-->
-<!--            android:id="@+id/nav_fragment_two"-->
-<!--            android:title="@string/menu_two" />-->
+<!--            android:id="@+id/nav_fragment_dashboard"-->
+<!--            android:title="@string/menu_one" />-->
+<!--&lt;!&ndash;        <item&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/nav_fragment_two"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:title="@string/menu_two" />&ndash;&gt;-->
+<!--&lt;!&ndash;        <item&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/nav_fragment_three"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:title="@string/menu_three" />&ndash;&gt;-->
+<!--&lt;!&ndash;        <item&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/nav_fragment_four"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:title="@string/menu_four" />&ndash;&gt;-->
+<!--&lt;!&ndash;        <item&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/nav_fragment_five"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:title="@string/menu_five" />&ndash;&gt;-->
 <!--        <item-->
-<!--            android:id="@+id/nav_fragment_three"-->
-<!--            android:title="@string/menu_three" />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_fragment_four"-->
-<!--            android:title="@string/menu_four" />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_fragment_five"-->
-<!--            android:title="@string/menu_five" />-->
-        <item
-            android:id="@+id/nav_fragment_settings"
-            android:title="@string/menu_six" />
-    </group>
+<!--            android:id="@+id/nav_fragment_settings"-->
+<!--            android:title="@string/menu_six" />-->
+<!--    </group>-->
 </menu>

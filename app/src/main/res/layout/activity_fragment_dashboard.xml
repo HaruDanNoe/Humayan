@@ -10,22 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Soil Moisture Button -->
-        <ImageButton
-            android:id="@+id/button_moisture"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_ph"
-            android:contentDescription="Soil Moisture"
-            android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button_ph"
-            app:layout_constraintBottom_toTopOf="@+id/button_water_depth"
-            app:layout_constraintWidth_percent="0.48"
-            app:layout_constraintHeight_percent="0.48"
-            android:layout_margin="8dp"/>
 
         <!-- Soil pH Level Button -->
         <ImageButton
@@ -33,8 +17,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_ph"
-            android:contentDescription="Soil pH Level"
+            android:src="@drawable/ic_moisture"
+            android:contentDescription="Soil Moisture"
             android:scaleType="fitCenter"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_moisture"
@@ -44,13 +28,31 @@
             app:layout_constraintHeight_percent="0.48"
             android:layout_margin="8dp"/>
 
+        <!-- Soil Moisture Button -->
+        <ImageButton
+            android:id="@+id/button_moisture"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_ph"
+            android:contentDescription="Soil pH Level"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_ph"
+            app:layout_constraintBottom_toTopOf="@+id/button_water_depth"
+            app:layout_constraintWidth_percent="0.48"
+            app:layout_constraintHeight_percent="0.48"
+            android:layout_margin="8dp"/>
+
+
         <!-- Water Depth Button -->
         <ImageButton
             android:id="@+id/button_water_depth"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_ph"
+            android:src="@drawable/ic_waterlevel"
             android:contentDescription="Water Depth"
             android:scaleType="fitCenter"
             app:layout_constraintTop_toBottomOf="@+id/button_moisture"
@@ -66,17 +68,18 @@
             android:id="@+id/button_weather"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_margin="8dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_ph"
             android:contentDescription="Weather"
             android:scaleType="fitCenter"
-            app:layout_constraintTop_toBottomOf="@+id/button_ph"
-            app:layout_constraintStart_toEndOf="@+id/button_water_depth"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_weather"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.48"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.48"
-            android:layout_margin="8dp"/>
+            app:layout_constraintStart_toEndOf="@+id/button_water_depth"
+            app:layout_constraintTop_toBottomOf="@+id/button_ph"
+            app:layout_constraintWidth_percent="0.48" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
