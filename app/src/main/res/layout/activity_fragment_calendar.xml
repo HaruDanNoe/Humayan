@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- CalendarView -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:weekDayTextAppearance="@style/WeekdayTextStyle"
+        android:dateTextAppearance="@style/DateTextStyle"
+        android:selectedDateVerticalBar="@color/nav_green"
+        android:selectedWeekBackgroundColor="@color/nav_green"
+        android:weekNumberColor="@color/nav_green"
+        android:weekSeparatorLineColor="@color/nav_green"/>
+
+
+</LinearLayout>

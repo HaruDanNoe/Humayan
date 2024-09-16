@@ -1,85 +1,74 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- First Row: Soil pH Level and Soil Moisture -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
 
         <!-- Soil pH Level Button -->
         <ImageButton
             android:id="@+id/button_ph"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_moisture"
-            android:contentDescription="Soil Moisture"
-            android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button_moisture"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/button_weather"
-            app:layout_constraintWidth_percent="0.48"
-            app:layout_constraintHeight_percent="0.48"
-            android:layout_margin="8dp"/>
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_ph"
+            android:contentDescription="Soil pH Level" />
 
         <!-- Soil Moisture Button -->
         <ImageButton
             android:id="@+id/button_moisture"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_ph"
-            android:contentDescription="Soil pH Level"
-            android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button_ph"
-            app:layout_constraintBottom_toTopOf="@+id/button_water_depth"
-            app:layout_constraintWidth_percent="0.48"
-            app:layout_constraintHeight_percent="0.48"
-            android:layout_margin="8dp"/>
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_moisture"
+            android:contentDescription="Soil Moisture" />
 
+    </LinearLayout>
+
+    <!-- Second Row: Water Depth and Weather -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <!-- Water Depth Button -->
         <ImageButton
             android:id="@+id/button_water_depth"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="150dp"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_waterlevel"
             android:contentDescription="Water Depth"
-            android:scaleType="fitCenter"
-            app:layout_constraintTop_toBottomOf="@+id/button_moisture"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button_weather"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintWidth_percent="0.48"
-            app:layout_constraintHeight_percent="0.48"
-            android:layout_margin="8dp"/>
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_water" />
 
         <!-- Weather Button -->
         <ImageButton
             android:id="@+id/button_weather"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="150dp"
             android:layout_margin="8dp"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="Weather"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_weather"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.48"
-            app:layout_constraintStart_toEndOf="@+id/button_water_depth"
-            app:layout_constraintTop_toBottomOf="@+id/button_ph"
-            app:layout_constraintWidth_percent="0.48" />
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_weather" />
+    </LinearLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</RelativeLayout>
+</LinearLayout>

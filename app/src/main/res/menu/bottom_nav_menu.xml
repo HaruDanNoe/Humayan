@@ -1,18 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home_24"
-        android:title="Home" />
+
 
     <item
         android:id="@+id/nav_dashboard"
-        android:icon="@drawable/ic_dashboard_24"
+        android:icon="@drawable/ic_home_24"
         android:title="Dashboard" />
+
+
+    <item
+        android:id="@+id/nav_calendar"
+        android:icon="@drawable/ic_calendar_24"
+        android:title="Calendar" />
 
     <item
         android:id="@+id/nav_account"
         android:icon="@drawable/ic_account_24"
-        android:title="Me" />
+        android:title="Profile" />
 
 </menu>

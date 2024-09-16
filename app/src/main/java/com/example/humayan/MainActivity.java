@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         // Load the default fragment (if needed)
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new FragmentHome())
+                    .replace(R.id.fragment_container, new FragmentDashboard())
                     .commit();
         }
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 if (id == R.id.nav_dashboard) {
                     selectedFragment = new FragmentDashboard();
-                } else if (id == R.id.nav_home) {
-                    selectedFragment = new FragmentHome();
+                } else if (id == R.id.nav_calendar) {
+                    selectedFragment = new FragmentCalendar();
                 } else if (id == R.id.nav_account) {
                     selectedFragment = new FragmentAccount();
                 }

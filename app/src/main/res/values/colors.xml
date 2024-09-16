@@ -6,7 +6,10 @@
     <color name="red">#F00</color>
     <color name="green">#90EE90</color>
     <color name="dark_green">#0F422c</color>
-    <color name="bottom_green">#34af72</color>
+    <color name="nav_green">#34af72</color>
     <color name="icon_color">#4CAF50</color>
     <color name="button_color">#f3f6f4</color>
+
+    <!-- Icon tint color with 50% opacity -->
+    <color name="icon_tint_color">#80FFFFFF</color> <!-- White with 50% opacity -->
 </resources>

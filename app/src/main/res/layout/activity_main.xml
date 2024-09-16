@@ -20,8 +20,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/bottom_green"
-            android:backgroundTint="@color/bottom_green"
+            android:background="@color/nav_green"
+            android:backgroundTint="@color/nav_green"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -39,8 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/bottom_green"
-            app:backgroundTint="@color/bottom_green"
+            android:background="@color/nav_green"
+            app:backgroundTint="@color/nav_green"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
             app:menu="@menu/bottom_nav_menu" />

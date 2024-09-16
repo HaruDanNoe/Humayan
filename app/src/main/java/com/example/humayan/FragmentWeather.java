@@ -11,8 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class FragmentWeather extends Fragment {
 
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -34,11 +37,27 @@ public class FragmentWeather extends Fragment {
         setHasOptionsMenu(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Weather");
 
-        return inflater.inflate(R.layout.activity_fragment_weather, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.activity_fragment_moisture, container, false);
+
+        // Hide BottomNavigationView
+        bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setVisibility(View.GONE);
+        }
+
+        return view;
     }
 
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
+
+        // Show the BottomNavigationView again when leaving this fragment
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setVisibility(View.VISIBLE);
+        }
+
         // Disable the back button when leaving this fragment
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }

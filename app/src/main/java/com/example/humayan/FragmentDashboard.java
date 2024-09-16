@@ -31,8 +31,8 @@ public class FragmentDashboard extends Fragment {
         ImageButton weatherButton = view.findViewById(R.id.button_weather);
 
         // Set onClickListeners
-        soilPHLevelButton.setOnClickListener(v -> replaceFragment(new FragmentMoisture()));
-        soilMoistureButton.setOnClickListener(v -> replaceFragment(new FragmentPH()));
+        soilPHLevelButton.setOnClickListener(v -> replaceFragment(new FragmentPH()));
+        soilMoistureButton.setOnClickListener(v -> replaceFragment(new FragmentMoisture()));
         waterDepthButton.setOnClickListener(v -> replaceFragment(new FragmentWater()));
         weatherButton.setOnClickListener(v -> replaceFragment(new FragmentWeather()));
 

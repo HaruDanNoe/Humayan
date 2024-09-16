@@ -1,0 +1,13 @@
+<resources>
+    <!-- Custom Style for Weekday Text (Mon, Tue, etc.) -->
+    <style name="WeekdayTextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/nav_green</item>
+    </style>
+
+    <!-- Custom Style for Date Text (Numbers in Calendar) -->
+    <style name="DateTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/nav_green</item>
+    </style>
+</resources>

@@ -5,7 +5,7 @@
 
     <stroke
         android:width="4dp"
-        android:color="#FF6200EE" /> <!-- Replace with your preferred color -->
+        android:color="@color/black" /> <!-- Replace with your preferred color -->
 
     <padding
         android:left="2dp"
