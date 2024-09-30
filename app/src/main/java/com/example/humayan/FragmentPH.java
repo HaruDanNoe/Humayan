@@ -38,7 +38,7 @@ public class FragmentPH extends Fragment {
 
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_fragment_moisture, container, false);
+        View view = inflater.inflate(R.layout.activity_fragment_ph_level, container, false);
 
         // Hide BottomNavigationView
         bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);

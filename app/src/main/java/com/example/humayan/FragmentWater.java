@@ -39,7 +39,7 @@ public class FragmentWater extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Water Level");
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_fragment_moisture, container, false);
+        View view = inflater.inflate(R.layout.activity_fragment_water_depth, container, false);
 
         // Hide BottomNavigationView
         bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
