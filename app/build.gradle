@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0' // Correct library dependency
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
@@ -38,3 +38,5 @@ dependencies {
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
 }
+
+

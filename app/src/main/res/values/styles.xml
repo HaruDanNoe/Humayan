@@ -10,4 +10,18 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/nav_green</item>
     </style>
+
+    <!-- Dark application theme -->
+    <style name="LightTheme" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Light theme settings -->
+
+    </style>
+
+
+    <style name="DarkTheme" parent="Theme.Material3.Dark.NoActionBar">
+            <!-- Light theme settings -->
+            <item name="colorPrimary">@color/colorPrimary</item>
+            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+            <item name="colorAccent">@color/colorAccent</item>
+    </style>
 </resources>

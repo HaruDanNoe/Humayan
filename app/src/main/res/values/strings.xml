@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">Humayan</string>
-    <string name="open">Open</string> <!-- Add this line -->
-    <string name="close">Close</string> <!-- Add this line -->
+    <string name="open">Open</string> 
+    <string name="close">Close</string>
     <string name="menu_one">Home</string>
     <string name="menu_two">Soil PH Level</string>
     <string name="menu_three">Soil Moisture</string>
     <string name="menu_four">Profile</string>
     <string name="menu_five">Weather</string>
     <string name="menu_six">Settings</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+    <string name="dark_mode">Enable Dark Mode</string>
+    <string name="dark_mode_text">Settings</string>
 </resources>
