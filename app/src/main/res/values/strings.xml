@@ -12,4 +12,5 @@
     <string name="drawer_close">Close Drawer</string>
     <string name="dark_mode">Enable Dark Mode</string>
     <string name="dark_mode_text">Settings</string>
+    <string name="enter_your_city_name">Enter City\n</string>
 </resources>

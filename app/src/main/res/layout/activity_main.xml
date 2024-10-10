@@ -5,8 +5,6 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
-    android:backgroundTint="@color/white"
     android:backgroundTintMode="src_atop"
     tools:context=".MainActivity">
 
@@ -21,9 +19,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/nav_green"
+            app:titleTextColor="@color/white"
             android:backgroundTint="@color/nav_green"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+             />
 
         <!-- Main content area for fragments -->
         <FrameLayout

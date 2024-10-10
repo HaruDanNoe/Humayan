@@ -7,18 +7,19 @@
     <color name="dark_green">#0F422c</color>
     <color name="nav_green">#34af72</color>
     <color name="icon_color">#4CAF50</color>
-    <color name="button_color">#f3f6f4</color>
-    <color name="colorPrimary">#78909C</color>
-    <color name="colorPrimaryDark">#607D8B</color>
-    <color name="colorAccent">#455A64</color>
+    <color name="button_color">#34af72</color>
     <color name="black">#263238</color>
+    <color name="grey">#484B4B</color>
     <color name="white">#ECEFF1</color>
-    <color name="colorLightPrimary">#EEEEEE</color>
-    <color name="colorLightPrimaryDark">#D6D6D6</color>
-    <color name="colorLightAccent">#F4F4F4</color>
+    <color name="primary_green">#4CAF50</color>
     <color name="logo_background">#FFFFFF</color> <!-- Example color -->
     <color name="ic_ph_background">#FFFFFF</color> <!-- Example color -->
     <color name="ic_weather_background">#FFFFFF</color> <!-- Example color -->
+    <color name="colorPrimary">#6200EE</color> <!-- Your primary color -->
+    <color name="colorPrimaryDark">#3700B3</color> <!-- Your primary dark color -->
+    <color name="colorAccent">#03DAC5</color> <!-- Your accent color -->
+    <color name="lightBackgroundColor">#FFFFFF</color> <!-- Light background color -->
+    <color name="darkBackgroundColor">#000000</color> <!-- Dark background color -->
     <!-- Icon tint color with 50% opacity -->
     <color name="icon_tint_color">#80FFFFFF</color> <!-- White with 50% opacity -->
 </resources>

@@ -14,30 +14,21 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack(); // Go back to previous fragment
-        } else {
-            super.onBackPressed(); // Exit the app
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        // Load shared preferences to check for dark mode setting
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        // Get the dark mode preference, with false as the default value
         boolean darkMode = sharedPreferences.getBoolean("dark_mode", false);
 
-        // Apply dark mode if enabled, otherwise apply light theme
+        // Set the theme based on the dark mode preference before the activity is created
         if (darkMode) {
             setTheme(R.style.DarkTheme);
         } else {
             setTheme(R.style.LightTheme);
         }
+
+        super.onCreate(savedInstanceState); // Call super after setting the theme
+        setContentView(R.layout.activity_main);
 
         // Set up the Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -50,11 +41,10 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.fragment_container, new FragmentDashboard())
                     .commit();
         }
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Updated method to set the item selected listener
+        // Set the item selected listener for the bottom navigation
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -66,14 +56,27 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new FragmentCalendar();
                 } else if (id == R.id.nav_account) {
                     selectedFragment = new FragmentAccount();
-                }
-                else if (id == R.id.nav_settings) {
+                } else if (id == R.id.nav_settings) {
                     selectedFragment = new FragmentSettings();
                 }
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                // Replace the current fragment with the selected one
+                if (selectedFragment != null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, selectedFragment)
+                            .commit();
+                }
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack(); // Go back to previous fragment
+        } else {
+            super.onBackPressed(); // Exit the app
+        }
     }
 }

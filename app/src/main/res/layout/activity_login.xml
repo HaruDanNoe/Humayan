@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Welcome Text -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Humayan"
+        android:textSize="32sp"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:textColor="@color/primary_green" />
+
+    <!-- Email Input with Icon -->
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="10dp" />
+
+    <!-- Password Input with Icon -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColorHint="@color/grey"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:inputType="textPassword"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="10dp" />
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/primary_green"
+        android:textColor="@android:color/white"
+        android:text="Login" />
+
+    <!-- Register Redirect Text -->
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? Register"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_gravity="center" />
+
+</LinearLayout>
