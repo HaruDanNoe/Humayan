@@ -32,7 +32,7 @@ public class FragmentSettings extends Fragment {
         }
 
         // Initialize shared preferences
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        sharedPreferences = getActivity().getSharedPreferences("user_prefs", AppCompatActivity.MODE_PRIVATE); // Using the correct SharedPreferences for login
 
         switchDarkMode = view.findViewById(R.id.switchDarkMode);
         btnLogout = view.findViewById(R.id.btnLogout); // Initialize the logout button
@@ -54,18 +54,18 @@ public class FragmentSettings extends Fragment {
 
         // Set up logout button click listener
         btnLogout.setOnClickListener(v -> {
-            // Clear user session data
+            // Clear user session data (logout)
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.remove("user_data"); // Remove user data or any relevant session data
+            editor.putBoolean("is_logged_in", false); // Reset the login session flag
+            editor.remove("logged_in_email"); // Optionally remove the logged-in email
             editor.apply();
 
             // Redirect to login page
             Intent intent = new Intent(getActivity(), LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // Clear stack
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); // Clear activity stack and start a new task
             startActivity(intent);
-            getActivity().finish(); // Close the settings activity
+            getActivity().finish(); // Close the current activity
         });
-
 
         return view;
     }
