@@ -2,23 +2,23 @@
   "phData": [
     {
       "timestamp": "2024-10-01T08:00:00Z",
-      "phLevel": 6.5
+      "phLevel": 6.0
     },
     {
       "timestamp": "2024-10-02T08:00:00Z",
-      "phLevel": 6.8
-    },
-    {
-      "timestamp": "2024-10-03T08:00:00Z",
-      "phLevel": 7.0
-    },
-    {
-      "timestamp": "2024-10-04T08:00:00Z",
       "phLevel": 6.3
     },
     {
+      "timestamp": "2024-10-03T08:00:00Z",
+      "phLevel": 6.5
+    },
+    {
+      "timestamp": "2024-10-04T08:00:00Z",
+      "phLevel": 6.2
+    },
+    {
       "timestamp": "2024-10-05T08:00:00Z",
-      "phLevel": 6.7
+      "phLevel": 7.0
     }
   ]
 }

@@ -1,73 +1,121 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <!-- First Row: Soil pH Level and Soil Moisture -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp">
+        android:orientation="vertical">
 
-        <!-- Soil pH Level Button -->
-        <ImageButton
-            android:id="@+id/button_ph"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:background="@android:color/transparent"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_ph"
-            android:contentDescription="Soil pH Level" />
+        <!-- First Row: Soil pH Level and Soil Moisture -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
 
-        <!-- Soil Moisture Button -->
-        <ImageButton
-            android:id="@+id/button_moisture"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:background="@android:color/transparent"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_moisture"
-            android:contentDescription="Soil Moisture" />
+            <!-- Soil pH Level Button -->
+            <ImageButton
+                android:id="@+id/button_ph"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_ph"
+                android:contentDescription="Soil pH Level" />
+
+            <!-- Soil Moisture Button -->
+            <ImageButton
+                android:id="@+id/button_moisture"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_moisture"
+                android:contentDescription="Soil Moisture" />
+        </LinearLayout>
+
+        <!-- Second Row: Water Depth and Weather -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Water Depth Button -->
+            <ImageButton
+                android:id="@+id/button_water_depth"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_water"
+                android:contentDescription="Water Depth" />
+
+            <!-- Weather Button -->
+            <ImageButton
+                android:id="@+id/button_weather"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_weather"
+                android:contentDescription="Weather" />
+        </LinearLayout>
+
+        <!-- Line Chart for water level, pH, and moisture -->
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"/>
+
+        <!-- Suggestion Text View -->
+        <TextView
+            android:id="@+id/text_suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Suggestions"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="⚠️ pH level too high! Consider adding lime to lower it."
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="⚠️ Water level too low! Check irrigation system."
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="⚠️ Moisture level critically low! Water the plants ASAP."
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark" />
 
     </LinearLayout>
-
-    <!-- Second Row: Water Depth and Weather -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Water Depth Button -->
-        <ImageButton
-            android:id="@+id/button_water_depth"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:contentDescription="Water Depth"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_water" />
-
-        <!-- Weather Button -->
-        <ImageButton
-            android:id="@+id/button_weather"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:contentDescription="Weather"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_weather" />
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

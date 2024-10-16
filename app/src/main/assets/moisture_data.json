@@ -2,15 +2,15 @@
   "moistureData": [
     {
       "timestamp": "2024-10-01T08:00:00Z",
-      "moistureLevel": 5
+      "moistureLevel": 5.0
     },
     {
       "timestamp": "2024-10-02T08:00:00Z",
-      "moistureLevel": 6.8
+      "moistureLevel": 5.5
     },
     {
       "timestamp": "2024-10-03T08:00:00Z",
-      "moistureLevel": 7.0
+      "moistureLevel": 6.0
     },
     {
       "timestamp": "2024-10-04T08:00:00Z",
@@ -18,7 +18,7 @@
     },
     {
       "timestamp": "2024-10-05T08:00:00Z",
-      "moistureLevel": 7.0
+      "moistureLevel": 6.8
     }
   ]
 }
