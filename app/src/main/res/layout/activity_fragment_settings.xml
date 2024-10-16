@@ -1,31 +1,106 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="top"
+    android:background="@color/white">
 
-    <TextView
-        android:id="@+id/tvSettingsTitle"
-        android:layout_width="wrap_content"
+    <!-- About Us Card -->
+    <LinearLayout
+        android:id="@+id/btnAboutUs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/dark_mode_text"
-        android:textSize="24sp"
-        android:paddingBottom="16dp" />
+        android:orientation="horizontal"
+        android:background="@drawable/rectangle_background"
+        android:padding="16dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical">
 
-    <Switch
-        android:id="@+id/switchDarkMode"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/iconAboutUs"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/aboutus_ic"
+            android:contentDescription="About Us Icon"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/tvAboutUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About Us"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <!-- Dark Mode Switch -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enable Dark Mode"
-        android:height="60dp" />
+        android:orientation="horizontal"
+        android:background="@drawable/rectangle_background"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical">
 
-    <Button
+        <ImageView
+            android:id="@+id/iconDarkMode"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/darkmode_ic"
+            android:contentDescription="Dark Mode Icon"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/tvDarkMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dark Mode"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginEnd="16dp" />
+
+        <Switch
+            android:id="@+id/switchDarkMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:thumbTint="@color/switch_thumb_selector"
+            android:trackTint="@color/gray"
+            android:trackTintMode="src_in" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
         android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Logout"
-        android:textColor="@color/white"
-        android:background="@color/nav_green" /> <!-- Added margin for spacing -->
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_green_background"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:gravity="center"
+        android:layout_marginTop="200dp">
+
+        <ImageView
+            android:id="@+id/iconLogout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/logout_ic"
+            android:contentDescription="Logout Icon"
+            android:tint="@color/white"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tvLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textSize="18sp"
+            android:textColor="@color/white" />
+    </LinearLayout>
 </LinearLayout>

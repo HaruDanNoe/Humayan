@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_color"
     tools:context=".FragmentMoisture">
 
     <!-- TextView above the EditText -->
@@ -15,7 +17,7 @@
         android:layout_marginTop="96dp"
         android:gravity="center"
         android:text="Moisture Level"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="24sp"
         android:layout_gravity="center" />  <!-- Center the TextView -->
 
@@ -26,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:hint="Enter Moisture Level"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:inputType="number"
         android:padding="8dp" />
 
@@ -35,6 +37,7 @@
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:background="@color/white"
         android:layout_marginTop="16dp" />
 
     <Button
@@ -51,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="History"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="24sp"
         android:layout_gravity="center" /> <!-- Center the TextView -->
 

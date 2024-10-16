@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="@color/background_color"
     android:padding="10dp">
 
     <LinearLayout
@@ -32,7 +33,7 @@
                 android:ems="10"
                 android:hint="@string/enter_your_city_name"
                 android:inputType="text"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textColorHint="#939393"
                 android:textSize="15sp"
                 android:layout_centerVertical="true" />
@@ -60,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:textAllCaps="true"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="16sp"
                 android:includeFontPadding="false" />
 
@@ -69,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="40sp"
                 android:includeFontPadding="false"
                 android:layout_gravity="center_horizontal"
@@ -79,7 +80,7 @@
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:layout_marginTop="40dp"
                 android:textSize="13sp"
                 android:layout_gravity="center_horizontal"
@@ -98,7 +99,7 @@
                 android:id="@+id/city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="18sp"
                 android:includeFontPadding="false"
                 android:textStyle="bold" />
@@ -107,7 +108,7 @@
                 android:id="@+id/country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="16sp"
                 android:layout_marginTop="8dp"
                 android:includeFontPadding="false" />
@@ -117,7 +118,7 @@
         <View
             android:layout_width="150dp"
             android:layout_height="1dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/text_color"
             android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal" />
 
@@ -139,7 +140,7 @@
                     android:text="Humidity"
                     android:textAllCaps="false"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp"
                     android:layout_marginStart="5dp"
                     android:textStyle="bold" />
@@ -160,7 +161,7 @@
                     android:padding="5dp"
                     android:text=" — "
                     android:layout_marginStart="80dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -175,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="Min Temperature"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="15sp"
                     android:layout_marginStart="5dp"
                     android:layout_gravity="center_vertical"
@@ -197,7 +198,7 @@
                     android:padding="5dp"
                     android:text=" — "
                     android:layout_marginStart="80dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -212,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="Max Temperature"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="15sp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
@@ -234,7 +235,7 @@
                     android:padding="5dp"
                     android:text=" — "
                     android:layout_marginStart="80dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -269,14 +270,14 @@
                     android:layout_height="wrap_content"
                     android:text="Sunrise"
                     android:includeFontPadding="false"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_color" />
 
                 <TextView
                     android:id="@+id/sunrises"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" — "
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:includeFontPadding="false" />
 
             </LinearLayout>
@@ -299,14 +300,14 @@
                     android:layout_height="wrap_content"
                     android:text="Sunset"
                     android:includeFontPadding="false"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_color" />
 
                 <TextView
                     android:id="@+id/sunsets"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" — "
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:includeFontPadding="false" />
 
             </LinearLayout>

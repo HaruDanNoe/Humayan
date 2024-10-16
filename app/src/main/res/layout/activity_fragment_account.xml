@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background_color"
     android:layout_height="match_parent">
 
     <!-- Profile Image -->
@@ -27,6 +28,7 @@
         android:text="John Doe"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textColor="@color/text_color"
         app:layout_constraintTop_toBottomOf="@id/profile_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -39,6 +41,7 @@
         android:layout_marginTop="8dp"
         android:text="Birthdate: January 1, 1990"
         android:textSize="16sp"
+        android:textColor="@color/text_color"
         app:layout_constraintTop_toBottomOf="@id/profile_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -51,6 +54,7 @@
         android:layout_marginTop="8dp"
         android:text="Address: 123 Main St, City, State"
         android:textSize="16sp"
+        android:textColor="@color/text_color"
         app:layout_constraintTop_toBottomOf="@id/profile_birthdate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -63,6 +67,7 @@
         android:layout_marginTop="8dp"
         android:text="Zip Code: 12345"
         android:textSize="16sp"
+        android:textColor="@color/text_color"
         app:layout_constraintTop_toBottomOf="@id/profile_address"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -75,6 +80,7 @@
         android:layout_marginTop="8dp"
         android:text="Nationality: American"
         android:textSize="16sp"
+        android:textColor="@color/text_color"
         app:layout_constraintTop_toBottomOf="@id/profile_zip_code"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

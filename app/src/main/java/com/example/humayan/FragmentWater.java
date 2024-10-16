@@ -1,6 +1,7 @@
 package com.example.humayan;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -97,6 +98,7 @@ public class FragmentWater extends Fragment {
         BarData barData = new BarData(dataSet);
         barChart.setData(barData);
         barChart.invalidate(); // Refresh the chart
+        barChart.setBackgroundColor(Color.WHITE); // Set chart background color
     }
 
     private String readJSONFromAsset(Context context, String fileName) {

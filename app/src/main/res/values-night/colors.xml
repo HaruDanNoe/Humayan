@@ -1,0 +1,8 @@
+<resources>
+    <color name="background_color">#121212</color> <!-- Dark background color -->
+    <color name="text_color">#FFFFFF</color> <!-- Dark text color -->
+    <color name="black">#FFFFFF</color>
+    <color name="white">#121212</color>
+    <color name="nav_green">#34af72</color>
+    <!-- Add more colors as needed -->
+</resources>

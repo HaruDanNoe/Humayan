@@ -1,6 +1,7 @@
 package com.example.humayan;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -95,6 +96,7 @@ public class FragmentPH extends Fragment {
         LineData lineData = new LineData(dataSet);
         lineChart.setData(lineData);
         lineChart.invalidate(); // Refresh the chart
+        lineChart.setBackgroundColor(Color.WHITE); // Set chart background color
     }
 
     private String readJSONFromAsset(Context context, String fileName) {

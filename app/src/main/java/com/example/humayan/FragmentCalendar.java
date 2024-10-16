@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,12 +31,15 @@ public class FragmentCalendar extends Fragment {
         // Initialize CalendarView
         calendarView = view.findViewById(R.id.calendarView);
 
+
         // Set listener for date change
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                // Handle date selection
                 String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+
+                // Use getActivity() to get the context
+                Toast.makeText(getActivity(), "Selected date: " + selectedDate, Toast.LENGTH_SHORT).show();
                 // You can now use the selected date (e.g., show it in a Toast or save it)
             }
         });

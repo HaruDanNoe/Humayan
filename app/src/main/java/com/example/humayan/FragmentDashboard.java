@@ -1,4 +1,6 @@
 package com.example.humayan;
+import static android.graphics.Color.WHITE;
+
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -137,6 +139,7 @@ public class FragmentDashboard extends Fragment {
             // Set the data to the chart
             chart.setData(lineData);
 
+            chart.setBackgroundColor(WHITE);
             // Disable x-axis labels
             chart.getXAxis().setEnabled(false); // Disable x-axis
 
