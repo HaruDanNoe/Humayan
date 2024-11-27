@@ -18,6 +18,7 @@
     <color name="colorAccent">#03DAC5</color> <!-- Your accent color -->
     <color name="lightBackgroundColor">#FFFFFF</color> <!-- Light background color -->
     <color name="darkBackgroundColor">#000000</color> <!-- Dark background color -->
+    <color name="lightgray">#D3D3D3</color>
         <color name="background_color">#FFFFFF</color> <!-- Light background color -->
         <color name="text_color">#000000</color> <!-- Light text color -->
         <color name="black">#000000</color>

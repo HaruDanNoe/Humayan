@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.nav_settings) {
                 selectedFragment = new FragmentSettings();
             }
+            else if (item.getItemId() == R.id.nav_chat) {
+                selectedFragment = new FragmentChat();
+            }
 
             // Replace the current fragment with the selected one
             if (selectedFragment != null) {

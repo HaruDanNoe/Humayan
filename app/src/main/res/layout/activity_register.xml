@@ -1,70 +1,115 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:padding="24dp"
+    android:background="@color/white"> <!-- Set a background color -->
 
-    <!-- Register Text -->
+    <!-- App Logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="@string/app_name"
+        android:layout_marginBottom="32dp"/>
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp" /> <!-- Add bottom margin for spacing -->
+
+    <EditText
+        android:id="@+id/lastNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Last Name"
+        android:minHeight="56dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginBottom="16dp" /> <!-- Add bottom margin for spacing -->
+
+    <EditText
+        android:id="@+id/firstNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="First Name"
+        android:minHeight="56dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginBottom="16dp" /> <!-- Add bottom margin for spacing -->
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:minHeight="56dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginBottom="16dp" /> <!-- Add bottom margin for spacing -->
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:minHeight="56dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginBottom="16dp" /> <!-- Add bottom margin for spacing -->
+
+    <EditText
+        android:id="@+id/confirmPasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:minHeight="56dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginBottom="24dp" /> <!-- Add bottom margin for spacing -->
+
+    <Button
+        android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register"
-        android:textSize="32sp"
-        android:layout_marginTop="100dp"
-        android:gravity="center"
-        android:textColor="@color/primary_green" />
-
-    <!-- Email Input with Icon -->
-    <EditText
-        android:id="@+id/etRegisterEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        android:hint="Email"
-        android:layout_marginTop="30dp"
-        android:padding="10dp"
-        android:background="@drawable/rounded_edittext"
-        android:inputType="textEmailAddress"
-        android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="10dp" />
-
-    <!-- Password Input with Icon -->
-    <EditText
-        android:id="@+id/etRegisterPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:hint="Password"
-        android:textColorHint="@color/gray"
-        android:layout_marginTop="20dp"
-        android:padding="10dp"
-        android:background="@drawable/rounded_edittext"
-        android:inputType="textPassword"
-        android:drawableStart="@drawable/ic_password"
-        android:drawablePadding="10dp" />
-
-    <!-- Register Button -->
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/primary_green"
+        android:minHeight="56dp"
+        android:textSize="18sp"
+        android:backgroundTint="@color/green"
         android:textColor="@android:color/white"
-        android:text="Register" />
-
-    <!-- Login Redirect Text -->
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/> <!-- Add bottom margin for spacing -->
     <TextView
-        android:id="@+id/tvLogin"
+        android:id="@+id/loginLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an account? Login"
+        android:text="Already have an account? Login here"
+        android:textColor="@color/colorAccent"
         android:textSize="16sp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:textColor="@android:color/holo_blue_light"
-        android:layout_gravity="center" />
-
+        android:minHeight="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"/>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 </LinearLayout>

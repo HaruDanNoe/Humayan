@@ -1,16 +1,23 @@
 package com.example.humayan;
 import static android.graphics.Color.WHITE;
 
+import static com.example.humayan.GeminiAPIHelper.getGeminiResponse;
+
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -21,8 +28,7 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,10 +41,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+
 
 public class FragmentDashboard extends Fragment {
 
     private LineChart chart;
+    private ImageButton askGeminiButton;
 
     @Nullable
     @Override
@@ -63,8 +72,54 @@ public class FragmentDashboard extends Fragment {
         // Initialize the chart
         chart = view.findViewById(R.id.chart);
         setupChartData();
+        // Find and initialize Ask Gemini button
+        askGeminiButton = view.findViewById(R.id.button_ask_gemini);
+
+        // Set OnClickListener for Ask Gemini button
+        askGeminiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAskGeminiDialog();
+            }
+        });
 
         return view;
+    }
+    // Method to show a dialog with an EditText for user input and a button to trigger Gemini query
+    private void showAskGeminiDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Ask Gemini");
+        builder.setMessage("What would you like to ask about the warnings?");
+
+        final EditText userInput = new EditText(getContext());
+        userInput.setHint("Enter your question");
+        builder.setView(userInput);
+
+        builder.setPositiveButton("Ask", (dialog, which) -> {
+            String userPrompt = userInput.getText().toString().trim();
+            if (!userPrompt.isEmpty()) {
+                // Use ExecutorService to perform the network call in the background
+                Executors.newSingleThreadExecutor().execute(() -> {
+                    try {
+                        String response = GeminiAPIHelper.getGeminiResponse(userPrompt);
+
+                        // Update the UI on the main thread
+                        new Handler(Looper.getMainLooper()).post(() ->
+                                Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show()
+                        );
+                    } catch (IOException | JSONException e) {
+                        // Handle error on the main thread
+                        new Handler(Looper.getMainLooper()).post(() ->
+                                Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                        );
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.create().show();
     }
 
     // Method to replace the current fragment

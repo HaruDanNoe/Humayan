@@ -122,6 +122,15 @@
                 android:text="pH level too high! \nConsider adding lime to lower it."
                 android:textSize="12sp"
                 android:textColor="@color/red" />
+
+            <ImageButton
+                android:id="@+id/button_ask_gemini"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_arrow"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
+
         </LinearLayout>
 
         <LinearLayout

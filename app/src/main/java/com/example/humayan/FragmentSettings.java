@@ -47,9 +47,9 @@ public class FragmentSettings extends Fragment {
         // Set up logout button click listener
         btnLogout.setOnClickListener(v -> {
             // Clear user session data (logout)
-            SharedPreferences.Editor editor = getActivity().getSharedPreferences("user_prefs", AppCompatActivity.MODE_PRIVATE).edit();
-            editor.putBoolean("is_logged_in", false);
-            editor.remove("logged_in_email");
+            SharedPreferences.Editor editor = getActivity().getSharedPreferences("app_prefs", AppCompatActivity.MODE_PRIVATE).edit();
+            editor.putBoolean("user_login", false);
+            editor.remove("logged_in_email"); // Remove any additional data if needed
             editor.apply();
 
             // Redirect to login page
@@ -58,6 +58,7 @@ public class FragmentSettings extends Fragment {
             startActivity(intent);
             getActivity().finish();
         });
+
 
         btnAboutUs.setOnClickListener(v -> {
             // Navigate to FragmentAboutUs
