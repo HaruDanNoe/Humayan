@@ -1,11 +1,13 @@
 package com.example.humayan;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
 
 import java.util.List;
 
@@ -26,11 +28,24 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @Override
     public void onBindViewHolder(ChatViewHolder holder, int position) {
         ChatMessage chatMessage = chatMessages.get(position);
-        holder.messageTextView.setText(chatMessage.getMessage());
+
+        // Handle visibility and background based on whether the message is from the user or the system
         if (chatMessage.isUser()) {
-            holder.messageTextView.setBackgroundResource(R.drawable.user_message_bg);
+            // Show user message (aligned to the right)
+            holder.userMessageCard.setVisibility(View.VISIBLE);
+            holder.userMessage.setText(chatMessage.getMessage());
+            holder.userMessage.setGravity(Gravity.END); // Align to the right for user
+
+            // Hide system message
+            holder.systemMessageCard.setVisibility(View.GONE);
         } else {
-            holder.messageTextView.setBackgroundResource(R.drawable.model_message_bg);
+            // Show system message (aligned to the left)
+            holder.systemMessageCard.setVisibility(View.VISIBLE);
+            holder.systemMessage.setText(chatMessage.getMessage());
+            holder.systemMessage.setGravity(Gravity.START); // Align to the left for system
+
+            // Hide user message
+            holder.userMessageCard.setVisibility(View.GONE);
         }
     }
 
@@ -40,11 +55,15 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     }
 
     public static class ChatViewHolder extends RecyclerView.ViewHolder {
-        TextView messageTextView;
+        CardView userMessageCard, systemMessageCard;
+        TextView userMessage, systemMessage;
 
         public ChatViewHolder(View itemView) {
             super(itemView);
-            messageTextView = itemView.findViewById(R.id.messageTextView);
+            userMessageCard = itemView.findViewById(R.id.userMessageCard);
+            systemMessageCard = itemView.findViewById(R.id.systemMessageCard);
+            userMessage = itemView.findViewById(R.id.userMessage); // Referencing userMessage
+            systemMessage = itemView.findViewById(R.id.systemMessage); // Referencing systemMessage
         }
     }
 }

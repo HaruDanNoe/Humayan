@@ -2,7 +2,7 @@ package com.example.humayan;
 
 import java.io.Serializable;
 
-public class ChatMessage implements Serializable {
+public class ChatMessage {
     private String message;
     private boolean isUser;
 
@@ -19,4 +19,5 @@ public class ChatMessage implements Serializable {
         return isUser;
     }
 }
+
 

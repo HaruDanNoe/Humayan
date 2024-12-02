@@ -15,4 +15,9 @@ public class ChatViewModel extends ViewModel {
     public void addMessage(ChatMessage message) {
         chatMessages.add(message);
     }
+    public void clearMessages() {
+        chatMessages.clear();
+    }
 }
+
+
