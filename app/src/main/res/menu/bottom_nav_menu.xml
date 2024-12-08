@@ -15,7 +15,10 @@
         android:id="@+id/nav_chat"
         android:icon="@drawable/ic_chat"
         android:title="Chat"/>
-
+    <item
+        android:id="@+id/nav_insect"
+        android:icon="@drawable/ic_insect"
+        android:title="Settings" />
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings_24"

@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
+    <!-- Insect Image -->
+    <ImageView
+        android:id="@+id/insect_image"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:background="@drawable/bug_bg"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Scientific Name -->
+    <TextView
+        android:id="@+id/scientific_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scientific Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Common Names -->
+    <TextView
+        android:id="@+id/common_names"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Common Names: "
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Insect Description -->
+    <TextView
+        android:id="@+id/insect_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Insect Description: "
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp"
+        />
+
+    <!-- Similar Images Container -->
+    <LinearLayout
+        android:id="@+id/similar_images_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp"
+        android:gravity="center">
+        <!-- Dynamically generated similar images will be placed here -->
+    </LinearLayout>
+
+    <!-- Button to pick image -->
+    <Button
+        android:id="@+id/pick_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick Image"
+        android:layout_marginBottom="16dp"
+        android:background="@color/green"
+        android:layout_gravity="center"/>
+
+    <!-- Button to identify insect -->
+    <Button
+        android:id="@+id/identify_insect_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Identify Insect"
+        android:background="@color/green"
+        android:enabled="false"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

@@ -155,12 +155,12 @@ public class FragmentDashboard extends Fragment {
                 waterWarningView.setVisibility(View.VISIBLE);
                 showWaterHelp = true;
             } else if (waterDepth <= 15) {
-                waterWarningView.setText("Water depth low! Consider adding more water.");
+                waterWarningView.setText("Water depth low!");
                 waterWarningView.setTextColor(yellow);
                 waterWarningView.setVisibility(View.VISIBLE);
                 showWaterHelp = true;
             } else if (waterDepth > 20) {
-                waterWarningView.setText("Water depth too high! Avoid over-irrigation.");
+                waterWarningView.setText("Water depth too high!");
                 waterWarningView.setTextColor(yellow);
                 waterWarningView.setVisibility(View.VISIBLE);
                 showWaterHelp = true;
