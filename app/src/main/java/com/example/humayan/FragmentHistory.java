@@ -25,10 +25,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class FragmentHistory extends Fragment {
@@ -127,6 +131,7 @@ public class FragmentHistory extends Fragment {
                             if (!groupedData.containsKey(key)) {
                                 groupedData.put(key, new ArrayList<>());
                             }
+                            groupedData.get(key).add(timestamp);
                         }
 
                         // Get the years that have batches
@@ -177,8 +182,14 @@ public class FragmentHistory extends Fragment {
     }
 
     private void updateBatchList(Map<String, List<String>> groupedData, String selectedYear) {
+        // Log the grouped data to check its contents
+        Log.d("BatchList", "Grouped Data: " + groupedData.toString());
+
         // Clear the existing data in the list view
         dataList.clear();
+
+        // Define the date format to parse the timestamp
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
         // Iterate through the grouped data and add batches for the selected year
         for (String key : groupedData.keySet()) {
@@ -186,8 +197,43 @@ public class FragmentHistory extends Fragment {
             String batchId = parts[0];
             String year = parts[1];
 
+            Log.d("BatchList", "Processing batch: " + batchId + " for year: " + year); // Log batch information
+
             if (year.equals(selectedYear)) {
-                dataList.add("Batch " + batchId);
+                List<String> batchData = groupedData.get(key);
+
+                // Initialize variables to store the first and last timestamps
+                Date firstTimestamp = null;
+                Date lastTimestamp = null;
+
+                for (String data : batchData) {
+                    try {
+                        // Parse the timestamp string into a Date object
+                        Date timestamp = sdf.parse(data);
+
+                        Log.d("BatchList", "Parsed timestamp: " + timestamp); // Log each parsed timestamp
+
+                        // Compare and update the first and last timestamps
+                        if (firstTimestamp == null || timestamp.before(firstTimestamp)) {
+                            firstTimestamp = timestamp;
+                        }
+                        if (lastTimestamp == null || timestamp.after(lastTimestamp)) {
+                            lastTimestamp = timestamp;
+                        }
+                    } catch (ParseException e) {
+                        Log.e("BatchList", "Error parsing timestamp: " + data, e);
+                    }
+                }
+
+                // Log the results of the first and last timestamps
+                if (firstTimestamp != null && lastTimestamp != null) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd", Locale.getDefault());
+                    String startTimestamp = dateFormat.format(firstTimestamp);
+                    String endTimestamp = dateFormat.format(lastTimestamp);
+
+                    Log.d("BatchList", "Adding batch: " + batchId + " (" + startTimestamp + " - " + endTimestamp + ")");
+                    dataList.add("Batch " + batchId + " (" + startTimestamp + " - " + endTimestamp + ")");
+                }
             }
         }
 
@@ -202,6 +248,9 @@ public class FragmentHistory extends Fragment {
             openChartFragment(batchId, selectedDataType); // Open the chart fragment with batchId and dataType
         });
     }
+
+
+
 
 
     private String getUrlForDataType(String dataType, String selectedYear) {

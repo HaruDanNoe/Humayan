@@ -104,134 +104,124 @@ public class FragmentDashboard extends Fragment {
             }
         }.execute();
     }
-    private Button helpButton = null; // Create a single instance
+
 
     private void updateUI(JSONObject phData, JSONObject waterData, JSONObject moistureData) {
         if (getView() == null) return;
 
+        Button phHelpButton = getView().findViewById(R.id.button_request_help_ph);
+        Button waterHelpButton = getView().findViewById(R.id.button_request_help_water);
+        Button moistureHelpButton = getView().findViewById(R.id.button_request_help_moisture);
+
         try {
-            // Get data values
             double phLevel = phData.getDouble("ph_level");
             double waterDepth = waterData.getDouble("water_depth");
             double moistureLevel = moistureData.getDouble("moisture_level");
 
-            // Define color values
+            boolean showPhHelp = false, showWaterHelp = false, showMoistureHelp = false;
+
             int green = getResources().getColor(android.R.color.holo_green_dark);
             int yellow = getResources().getColor(android.R.color.holo_orange_light);
             int red = getResources().getColor(android.R.color.holo_red_dark);
 
-            // Initialize or update the button
-            if (helpButton == null) {
-                helpButton = new Button(getContext());
-                helpButton.setText("Request Help");
-                helpButton.setTextSize(12); // Adjust text size
-                helpButton.setPadding(10, 4, 10, 4); // Add padding for better appearance
-                helpButton.setVisibility(View.GONE); // Initially hide it
-            }
-
-            // Update pH warning based on range
-            TextView phWarningView = getView().findViewById(R.id.tvAboutUs);
+            // pH Warning
+            TextView phWarningView = getView().findViewById(R.id.text_ph_warning);
             if (phLevel >= 6 && phLevel <= 7) {
                 phWarningView.setText("Perfect pH Level");
                 phWarningView.setTextColor(green);
                 phWarningView.setVisibility(View.VISIBLE);
-                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
             } else if (phLevel < 4) {
-                phWarningView.setText("pH Level critically Low");
+                phWarningView.setText("pH Level critically low!");
                 phWarningView.setTextColor(red);
                 phWarningView.setVisibility(View.VISIBLE);
-                showHelpButton(helpButton, phWarningView);  // Show button next to pH warning
+                showPhHelp = true;
             } else if (phLevel < 6) {
                 phWarningView.setText("pH Level Low");
                 phWarningView.setTextColor(yellow);
                 phWarningView.setVisibility(View.VISIBLE);
-                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
-            } else { // phLevel > 7
+                showPhHelp = true;
+            } else {
                 phWarningView.setText("pH Level High");
-                phWarningView.setTextColor(yellow);
+                phWarningView.setTextColor(red);
                 phWarningView.setVisibility(View.VISIBLE);
-                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+                showPhHelp = true;
             }
 
-            // Update water depth warning based on rice crop guidelines
+            // Water Warning
             TextView waterWarningView = getView().findViewById(R.id.text_water_warning);
             if (waterDepth < 10) {
-                waterWarningView.setText("Water depth critically low! Increase water supply immediately.");
+                waterWarningView.setText("Water depth critically low!");
                 waterWarningView.setTextColor(red);
                 waterWarningView.setVisibility(View.VISIBLE);
-                showHelpButton(helpButton, waterWarningView);  // Show button next to water depth warning
+                showWaterHelp = true;
             } else if (waterDepth <= 15) {
                 waterWarningView.setText("Water depth low! Consider adding more water.");
                 waterWarningView.setTextColor(yellow);
                 waterWarningView.setVisibility(View.VISIBLE);
-                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+                showWaterHelp = true;
             } else if (waterDepth > 20) {
                 waterWarningView.setText("Water depth too high! Avoid over-irrigation.");
                 waterWarningView.setTextColor(yellow);
                 waterWarningView.setVisibility(View.VISIBLE);
-                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+                showWaterHelp = true;
             } else {
                 waterWarningView.setText("Perfect Water Depth");
                 waterWarningView.setTextColor(green);
                 waterWarningView.setVisibility(View.VISIBLE);
-                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+
             }
 
-            // Update moisture level warning based on field capacity
+
+
+
+
+
+            // Moisture Warning
             TextView moistureWarningView = getView().findViewById(R.id.text_moisture_warning);
             if (moistureLevel < 60) {
-                moistureWarningView.setText("Soil moisture critically low! Immediate irrigation needed.");
+                moistureWarningView.setText("Moisture critically low!");
                 moistureWarningView.setTextColor(red);
                 moistureWarningView.setVisibility(View.VISIBLE);
-                showHelpButton(helpButton, moistureWarningView);  // Show button next to moisture warning
+                showMoistureHelp = true;
             } else if (moistureLevel <= 80) {
-                moistureWarningView.setText("Soil moisture low. Monitor and water soon.");
+                moistureWarningView.setText("Soil moisture low.");
                 moistureWarningView.setTextColor(yellow);
                 moistureWarningView.setVisibility(View.VISIBLE);
-                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+                showMoistureHelp = true;
             } else {
                 moistureWarningView.setText("Perfect Soil Moisture Level");
                 moistureWarningView.setTextColor(green);
                 moistureWarningView.setVisibility(View.VISIBLE);
-                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
             }
 
-            // Show or hide suggestions based on visibility of warnings
-            TextView suggestionsText = getView().findViewById(R.id.text_suggestion);
-            boolean anyWarningVisible =
-                    phWarningView.getVisibility() == View.VISIBLE ||
-                            waterWarningView.getVisibility() == View.VISIBLE ||
-                            moistureWarningView.getVisibility() == View.VISIBLE;
+            // Control Help Button Visibility
+            phHelpButton.setVisibility(showPhHelp ? View.VISIBLE : View.GONE);
+            waterHelpButton.setVisibility(showWaterHelp ? View.VISIBLE : View.GONE);
+            moistureHelpButton.setVisibility(showMoistureHelp ? View.VISIBLE : View.GONE);
 
-            suggestionsText.setVisibility(anyWarningVisible ? View.VISIBLE : View.GONE);
+            // Set Help Button Listeners
+            phHelpButton.setOnClickListener(v -> sendHelpMessage("Requesting assistance: Soil pH levels are critical for rice crops. What immediate steps should be taken to stabilize the pH?"));
+            waterHelpButton.setOnClickListener(v -> sendHelpMessage("Requesting assistance: Water depth for the rice fields is at a critical level. How can we quickly restore optimal flooding?"));
+            moistureHelpButton.setOnClickListener(v -> sendHelpMessage("Requesting assistance: Soil moisture levels are too low for healthy rice growth. What are the best irrigation techniques for this situation?"));
 
         } catch (JSONException e) {
             Log.e(TAG, "Error updating UI", e);
         }
     }
 
-    private void showHelpButton(Button helpButton, TextView warningView) {
-        if (getView() != null && warningView != null) {
-            // Add the button dynamically to the parent view
-            ViewGroup parentView = (ViewGroup) warningView.getParent();
-            if (parentView != null && helpButton.getParent() == null) {
-                parentView.addView(helpButton);
-                helpButton.setVisibility(View.VISIBLE);
-            }
-        }
-    }
-
-    private void removeButtonIfExists(Button helpButton) {
-        if (helpButton != null && helpButton.getParent() != null) {
-            ((ViewGroup) helpButton.getParent()).removeView(helpButton);
-        }
-    }
 
     private void sendHelpMessage(String message) {
-        // Code to send message to Gemini chat
-        Log.d(TAG, "Sending help message: " + message);
-        // Add your code to send the message (e.g., using an API or Intent)
+        FragmentChat fragmentChat = new FragmentChat();
+
+        // Pass the message as an argument to the FragmentChat
+        Bundle bundle = new Bundle();
+        bundle.putString("help_message", message);
+        fragmentChat.setArguments(bundle);
+
+        // Navigate to the Gemini fragment
+        replaceFragment(fragmentChat);
     }
+
 
     private JSONArray fetchJsonData(String urlString) throws IOException, JSONException {
         HttpURLConnection urlConnection = null;

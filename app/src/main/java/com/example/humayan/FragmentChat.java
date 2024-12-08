@@ -45,8 +45,8 @@ public class FragmentChat extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout
         View view = inflater.inflate(R.layout.activity_fragment_chat, container, false);
+
         if (getActivity() instanceof AppCompatActivity) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Gemini");
         }
@@ -60,15 +60,31 @@ public class FragmentChat extends Fragment {
         // Initialize ViewModel
         chatViewModel = new ViewModelProvider(requireActivity()).get(ChatViewModel.class);
 
-        // Initialize RecyclerView Adapter
+            // Initialize RecyclerView Adapter
         chatAdapter = new ChatAdapter(chatViewModel.getChatMessages());
         recyclerView.setAdapter(chatAdapter);
 
+            // Scroll to the last message
+        if (!chatViewModel.getChatMessages().isEmpty()) {
+            recyclerView.scrollToPosition(chatViewModel.getChatMessages().size() - 1);
+        }
         // Initialize Volley RequestQueue
         requestQueue = Volley.newRequestQueue(requireContext());
 
         // Fetch messages from database
         fetchMessagesFromDatabase();
+
+        // Check for a message passed from another fragment
+        Bundle args = getArguments();
+        if (args != null && args.containsKey("help_message")) {
+            String helpMessage = args.getString("help_message");
+            editTextMessage.setText(helpMessage);
+
+            // Simulate clicking the send button automatically
+            sendMessage();
+        }
+
+        buttonSend.setOnClickListener(v -> sendMessage());
 
         // Send button click listener
         buttonSend.setOnClickListener(v -> {
@@ -89,6 +105,30 @@ public class FragmentChat extends Fragment {
 
         return view;
     }
+
+    private void sendMessage() {
+        String userMessage = editTextMessage.getText().toString().trim();
+        if (!userMessage.isEmpty()) {
+            editTextMessage.setText(""); // Clear the input field
+
+            // Add user message to ViewModel immediately
+            chatViewModel.addMessage(new ChatMessage(userMessage, true));
+
+            // Notify the adapter that the data has changed
+            chatAdapter.notifyItemInserted(chatViewModel.getChatMessages().size() - 1);
+
+            // Scroll to the last item to show the newly added message
+            recyclerView.scrollToPosition(chatViewModel.getChatMessages().size() - 1);
+
+            // Save user message to the database
+            saveMessageToDatabase(userMessage, true);
+
+            // Send message to Gemini API (async operation)
+            sendMessageToGemini(userMessage);
+        }
+    }
+
+
 
     private void saveMessageToDatabase(String message, boolean isUserMessage) {
         String url = "https://zel.helioho.st/save_message.php";
@@ -117,14 +157,24 @@ public class FragmentChat extends Fragment {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        chatViewModel.clearMessages(); // Clear existing messages
+                        // Clear existing messages from ViewModel
+                        chatViewModel.clearMessages();
+
+                        // Add messages from the response
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject messageObj = response.getJSONObject(i);
                             String message = messageObj.getString("message");
                             boolean isUserMessage = messageObj.getInt("is_user_message") == 1;
                             chatViewModel.addMessage(new ChatMessage(message, isUserMessage));
                         }
+
+                        // Notify adapter that data has changed
                         chatAdapter.notifyDataSetChanged();
+
+                        // Scroll to the last message
+                        if (!chatViewModel.getChatMessages().isEmpty()) {
+                            recyclerView.scrollToPosition(chatViewModel.getChatMessages().size() - 1);
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -136,6 +186,7 @@ public class FragmentChat extends Fragment {
 
         requestQueue.add(jsonArrayRequest);
     }
+
 
     private void sendMessageToGemini(String prompt) {
         new Thread(() -> {

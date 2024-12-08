@@ -99,22 +99,29 @@
             android:layout_marginBottom="16dp"
             android:gravity="center_vertical">
 
-            <ImageView
-                android:id="@+id/iconAboutUs"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/warning_ic"
-                android:layout_marginEnd="16dp"
-                android:visibility="visible" />
 
             <TextView
-                android:id="@+id/tvAboutUs"
-                android:layout_width="wrap_content"
+                android:id="@+id/text_ph_warning"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="pH level too high!"
-                android:textSize="14sp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:textSize="16sp"
                 android:textColor="@color/red"
                 android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_request_help_ph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:visibility="gone"
+                android:text="Help"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="@color/red"
+                android:textColor="@android:color/white"
+                android:padding="10dp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -128,21 +135,28 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="16dp"
             android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/warning_ic"
-                android:layout_marginEnd="16dp" />
 
             <TextView
                 android:id="@+id/text_water_warning"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="30dp"
+                android:textSize="16sp"
+                android:textColor="@color/red"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_request_help_water"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Water level too low! \nCheck irrigation system."
-                android:textSize="12sp"
-                android:textColor="@color/red"
-                android:visibility="gone"/>
+                android:layout_gravity="end"
+                android:visibility="gone"
+                android:text="Help"
+                android:layout_marginRight="20dp"
+                android:backgroundTint="@color/red"
+                android:textColor="@android:color/white"
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -157,21 +171,29 @@
             android:layout_marginBottom="16dp"
             android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/warning_ic"
-                android:layout_marginEnd="16dp" />
-
             <TextView
                 android:id="@+id/text_moisture_warning"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/red"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_request_help_moisture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Moisture level critically low! \nWater the plants ASAP."
-                android:textSize="12sp"
-                android:textColor="@color/red"
-                android:visibility="gone"/>
+                android:layout_gravity="end"
+                android:visibility="gone"
+                android:text="Help"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="@color/red"
+                android:textColor="@android:color/white"
+                android:padding="10dp" />
         </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>

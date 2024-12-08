@@ -67,6 +67,10 @@ public class FragmentWeather extends Fragment {
         sunrises = view.findViewById(R.id.sunrises);
         sunsets = view.findViewById(R.id.sunsets);
 
+        // Default city
+        String defaultCity = "Bacolod";
+        new WeatherTask().execute(defaultCity);
+
         // Click listener for the search button
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +82,7 @@ public class FragmentWeather extends Fragment {
 
         return view;
     }
+
 
     private class WeatherTask extends AsyncTask<String, Void, String> {
 
