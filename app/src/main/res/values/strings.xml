@@ -13,4 +13,20 @@
     <string name="dark_mode">Enable Dark Mode</string>
     <string name="dark_mode_text">Settings</string>
     <string name="enter_your_city_name">Enter City\n</string>
+
+    <string-array name="data_types">
+        <item>pH Level</item>
+        <item>Water Depth</item>
+        <item>Moisture Level</item>
+    </string-array>
+
+        <string-array name="sort_by_year">
+            <item>2020</item>
+            <item>2021</item>
+            <item>2022</item>
+            <item>2023</item>
+            <item>2024</item>
+        </string-array>
+
+
 </resources>

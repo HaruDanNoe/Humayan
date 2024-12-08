@@ -41,16 +41,13 @@ public class MainActivity extends AppCompatActivity {
             // Using if-else statements for fragment selection
             if (item.getItemId() == R.id.nav_dashboard) {
                 selectedFragment = new FragmentDashboard();
-            } else if (item.getItemId() == R.id.nav_calendar) {
-                selectedFragment = new FragmentCalendar();
-            } else if (item.getItemId() == R.id.nav_account) {
-                selectedFragment = new FragmentAccount();
             } else if (item.getItemId() == R.id.nav_settings) {
                 selectedFragment = new FragmentSettings();
             } else if (item.getItemId() == R.id.nav_chat) {
                 selectedFragment = new FragmentChat();
+            }else if (item.getItemId() == R.id.nav_history) {
+                selectedFragment = new FragmentHistory();
             }
-
             // Replace the current fragment with the selected one
             if (selectedFragment != null) {
                 getSupportFragmentManager().beginTransaction()

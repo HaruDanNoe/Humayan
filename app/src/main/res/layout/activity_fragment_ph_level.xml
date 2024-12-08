@@ -53,6 +53,8 @@
         android:textColor="@color/white"
         android:background="@color/button_color" />
 
+
+
     <!-- History Title -->
     <TextView
         android:id="@+id/textViewHistory"

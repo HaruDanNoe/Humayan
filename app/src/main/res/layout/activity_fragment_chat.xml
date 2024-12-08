@@ -3,56 +3,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:weightSum="1"
     android:background="@color/background_color">
 
-    <!-- RecyclerView to display the chat messages -->
+    <!-- RecyclerView for chat messages -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8"
-        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:padding="8dp"
         android:scrollbars="vertical"
-        android:background="@color/background_color"
-        android:padding="8dp" />
+        android:clipToPadding="false"
+        android:overScrollMode="never" />
 
-    <!-- Layout for user message input and send button -->
+    <!-- User input section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
-        android:layout_gravity="bottom"
-        android:weightSum="1">
+        android:padding="8dp"
+        android:background="@drawable/input_bar"
+        android:elevation="4dp">
 
         <!-- User message input -->
         <EditText
             android:id="@+id/editTextMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8"
-            android:hint="Type a message..."
-            android:inputType="text"
-            android:padding="10dp"
+            android:layout_weight="1"
+            android:hint="Type your message..."
+            android:background="@null"
+            android:padding="12dp"
             android:textColor="@color/text_color"
-            android:background="@drawable/edit_text_bg"
             android:textSize="16sp"
+            android:inputType="text"
             android:importantForAccessibility="yes" />
 
         <!-- Send button -->
-        <Button
+        <ImageButton
             android:id="@+id/buttonSend"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:text="Send"
-            android:textColor="@color/text_color"
-            android:textSize="14sp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/button_send_bg"
-            android:gravity="center"
-            android:importantForAccessibility="yes" />
+            android:contentDescription="Send message"
+            android:src="@drawable/ic_send"
+            />
     </LinearLayout>
-
 </LinearLayout>

@@ -7,23 +7,18 @@
         android:icon="@drawable/ic_home_24"
         android:title="Dashboard" />
 
-
     <item
-        android:id="@+id/nav_calendar"
-        android:icon="@drawable/ic_calendar_24"
-        android:title="Calendar" />
-
+        android:id="@+id/nav_history"
+        android:icon="@drawable/ic_history"
+        android:title="History"/>
     <item
-        android:id="@+id/nav_account"
-        android:icon="@drawable/ic_account_24"
-        android:title="Profile" />
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/ic_chat"
+        android:title="Chat"/>
 
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings_24"
         android:title="Settings" />
-    <item
-        android:id="@+id/nav_chat"
-        android:icon="@drawable/ic_chat"
-        android:title="Chat"/>
+
 </menu>

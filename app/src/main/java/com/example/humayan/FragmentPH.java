@@ -30,8 +30,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,6 +72,8 @@ public class FragmentPH extends Fragment {
         lineChart = view.findViewById(R.id.lineChart);
         batchSpinner = view.findViewById(R.id.batchSpinner);
 
+        fetchBatchIds(); // Call fetchBatchIds here to fetch the latest batch and display the chart
+
         // Fetch and populate batch IDs
         fetchHistory(); // Call fetchHistory here to populate the spinner with batch data
 
@@ -86,7 +86,7 @@ public class FragmentPH extends Fragment {
 
             if (!phLevel.isEmpty()) {
                 // Submit the pH level for the latest batch
-                submitSensorData(Float.parseFloat(phLevel), 0.0f, 0.0f);
+                submitpHLevel(Float.parseFloat(phLevel));
                 editText.setText(""); // Clear input field
             } else {
                 Toast.makeText(getActivity(), "Please enter a valid pH level", Toast.LENGTH_SHORT).show();
@@ -96,18 +96,18 @@ public class FragmentPH extends Fragment {
         resetButton.setOnClickListener(v -> {
             // When reset button is clicked, increment batch ID and update chart
             incrementBatchId();
-            fetchBatchIds();
-            lineChart.clear();
-            lineChart.invalidate();
-            Toast.makeText(getActivity(), "Chart reset! New batch started.", Toast.LENGTH_SHORT).show();
+            // Do not call fetchBatchIds() or refresh the chart here
+            Toast.makeText(getActivity(), "New Batch started.", Toast.LENGTH_SHORT).show();
         });
 
         return view;
     }
 
 
+
+
     private void incrementBatchId() {
-        String url = "https://zel.helioho.st/increment_batch_id.php"; // Correct PHP script URL
+        String url = "https://zel.helioho.st/ph_level/increment_batch_id.php"; // Correct PHP script URL
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -132,8 +132,9 @@ public class FragmentPH extends Fragment {
         queue.add(stringRequest);
     }
 
-    private void submitSensorData(float phLevel, float moistureLevel, float waterLevel) {
-        String url = "https://zel.helioho.st/submit_sensor_data.php";  // Your PHP endpoint for submitting sensor data
+
+    private void submitpHLevel(Float phLevel) {
+        String url = "https://zel.helioho.st/ph_level/ph_level_insert.php";  // Your PHP endpoint for submitting sensor data
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -142,7 +143,7 @@ public class FragmentPH extends Fragment {
                         if (jsonResponse.getBoolean("success")) {
                             Toast.makeText(getActivity(), "Data submitted successfully!", Toast.LENGTH_SHORT).show();
                             // Fetch the updated chart data after submitting new data
-                            fetchChartData(currentBatchId);
+                            fetchAndDisplayBatchData(currentBatchId);
                         } else {
                             Toast.makeText(getActivity(), "Error: " + jsonResponse.getString("error"), Toast.LENGTH_SHORT).show();
                         }
@@ -158,8 +159,6 @@ public class FragmentPH extends Fragment {
                 Map<String, String> params = new HashMap<>();
                 params.put("batch_id", String.valueOf(currentBatchId));  // Use the updated batch_id
                 params.put("ph_level", String.valueOf(phLevel));
-                params.put("moisture_level", String.valueOf(moistureLevel));
-                params.put("water_level", String.valueOf(waterLevel));
                 return params;
             }
         };
@@ -169,40 +168,7 @@ public class FragmentPH extends Fragment {
     }
 
 
-    private void fetchChartData(int batchId) {
-        String url = "https://zel.helioho.st/get_ph_data.php?batch_id=" + batchId;
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                response -> {
-                    ArrayList<Entry> entries = new ArrayList<>();
-                    try {
-                        // Log the raw response for debugging
-                        Log.d("fetchChartData", "Response: " + response.toString());
-
-                        if (response.length() > 0) {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject dataPoint = response.getJSONObject(i);
-                                float phLevel = (float) dataPoint.getDouble("ph_level");
-                                entries.add(new Entry(i, phLevel)); // Use i as the x value (index)
-                            }
-                            updateChart(entries);
-                        } else {
-                            Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Toast.makeText(getActivity(), "Error parsing data", Toast.LENGTH_SHORT).show();
-                    }
-                },
-                error -> {
-                    // Log the error message for debugging
-                    Log.e("fetchChartData", "Error: " + error.getMessage());
-                    Toast.makeText(getActivity(), "Error fetching data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-
-        queue.add(jsonArrayRequest);
-    }
 
 
     private void updateChart(ArrayList<Entry> entries) {
@@ -217,19 +183,36 @@ public class FragmentPH extends Fragment {
     }
 
     private void fetchBatchIds() {
-        String url = "https://zel.helioho.st/get_batches.php"; // PHP script URL
+        String url = "https://zel.helioho.st/ph_level/get_batches_ph.php"; // PHP script URL
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
                         if (response.length() > 0) {
-                            // Assuming the latest batch is the last one in the array
-                            JSONObject latestBatch = response.getJSONObject(response.length() - 1);
-                            currentBatchId = latestBatch.getInt("batch_id"); // Set to the latest batch ID
+                            // Get the list of batch IDs
+                            ArrayList<String> batchIds = new ArrayList<>();
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject batch = response.getJSONObject(i);
+                                batchIds.add(batch.getString("batch_id"));
+                            }
 
-                            // Update chart with the latest batch data
-                            fetchChartData(currentBatchId);
+                            // Get the latest batch ID using your helper method
+                            String latestBatchId = getLatestBatchId(batchIds);
+                            currentBatchId = Integer.parseInt(latestBatchId); // Update to the latest batch ID
+
+                            // Create an ArrayAdapter for the spinner
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, batchIds);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            batchSpinner.setAdapter(adapter);
+
+                            // Set the spinner to the latest batch
+                            batchSpinner.setSelection(batchIds.indexOf(latestBatchId));
+
+                            // Fetch and display data for the latest batch
+                            fetchAndDisplayBatchData(currentBatchId);
+                        } else {
+                            Toast.makeText(getActivity(), "No batches available", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -242,8 +225,9 @@ public class FragmentPH extends Fragment {
     }
 
 
+
     private void fetchHistory() {
-        String url = "https://zel.helioho.st/get_batches.php"; // PHP script URL
+        String url = "https://zel.helioho.st/ph_level/get_batches_ph.php"; // PHP script URL
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -253,7 +237,7 @@ public class FragmentPH extends Fragment {
                         // Log the raw response
                         Log.d("API Response", response.toString());
 
-                        // Populate Spinner with batch IDs
+                        // Populate batchIds list
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject batch = response.getJSONObject(i);
                             String batchId = batch.getString("batch_id");
@@ -269,6 +253,9 @@ public class FragmentPH extends Fragment {
                             return;
                         }
 
+                        // Find the latest batch (largest batch ID)
+                        String latestBatchId = getLatestBatchId(batchIds);
+
                         // Create an ArrayAdapter
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, batchIds);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -276,12 +263,19 @@ public class FragmentPH extends Fragment {
                         // Set the adapter to the spinner
                         batchSpinner.setAdapter(adapter);
 
+                        // Set the selected item to the latest batch ID
+                        int latestBatchPosition = batchIds.indexOf(latestBatchId);
+                        batchSpinner.setSelection(latestBatchPosition);
+
+                        // Fetch the data for the latest batch
+                        fetchAndDisplayBatchData(Integer.parseInt(latestBatchId));
+
                         // Set Spinner item selected listener
                         batchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                                 String selectedBatchId = batchIds.get(position);
-                                fetchBatchData(Integer.parseInt(selectedBatchId));
+                                fetchAndDisplayBatchData(Integer.parseInt(selectedBatchId));
                             }
 
                             @Override
@@ -303,10 +297,22 @@ public class FragmentPH extends Fragment {
         queue.add(jsonArrayRequest);
     }
 
+    private String getLatestBatchId(ArrayList<String> batchIds) {
+        // Assuming batch IDs are numerical, find the largest batch ID
+        int latest = Integer.parseInt(batchIds.get(0));
+        for (String batchId : batchIds) {
+            int currentId = Integer.parseInt(batchId);
+            if (currentId > latest) {
+                latest = currentId;
+            }
+        }
+        return String.valueOf(latest);
+    }
 
 
-    private void fetchBatchData(int batchId) {
-        String url = "https://zel.helioho.st/get_ph_data.php?batch_id=" + batchId;
+
+    private void fetchAndDisplayBatchData(int batchId) {
+        String url = "https://zel.helioho.st/ph_level/get_ph_data.php?batch_id=" + batchId;
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -314,10 +320,14 @@ public class FragmentPH extends Fragment {
                     ArrayList<Entry> entries = new ArrayList<>();
                     try {
                         if (response.length() > 0) {
-                            for (int i = 0; i < response.length(); i++) {
+                            for (int i = 1; i < response.length(); i++) {
                                 JSONObject dataPoint = response.getJSONObject(i);
                                 float phLevel = (float) dataPoint.getDouble("ph_level");
-                                entries.add(new Entry(i, phLevel));
+
+                                // Only add entries where phLevel is not 0
+                                if (phLevel != 0) {
+                                    entries.add(new Entry(i, phLevel));
+                                }
                             }
                             updateChart(entries);
                         } else {
@@ -332,6 +342,9 @@ public class FragmentPH extends Fragment {
 
         queue.add(jsonArrayRequest);
     }
+
+
+
     public void onDestroyView() {
         super.onDestroyView();
 

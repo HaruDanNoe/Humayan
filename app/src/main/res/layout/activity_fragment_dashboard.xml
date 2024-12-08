@@ -74,14 +74,6 @@
                 android:contentDescription="Weather" />
         </LinearLayout>
 
-        <!-- Line Chart for water level, pH, and moisture -->
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chart"
-            android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="200dp"
-            android:background="@color/white"
-            android:layout_margin="16dp"/>
 
         <!-- Suggestion Text View -->
         <TextView
@@ -94,7 +86,6 @@
             android:textColor="@color/text_color"
             android:textStyle="bold"
             android:gravity="center" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,24 +104,17 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/warning_ic"
-                android:layout_marginEnd="16dp" />
+                android:layout_marginEnd="16dp"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tvAboutUs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="pH level too high! \nConsider adding lime to lower it."
-                android:textSize="12sp"
-                android:textColor="@color/red" />
-
-            <ImageButton
-                android:id="@+id/button_ask_gemini"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_back_arrow"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp" />
-
+                android:text="pH level too high!"
+                android:textSize="14sp"
+                android:textColor="@color/red"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -152,11 +136,13 @@
                 android:layout_marginEnd="16dp" />
 
             <TextView
+                android:id="@+id/text_water_warning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Water level too low! \nCheck irrigation system."
                 android:textSize="12sp"
-                android:textColor="@color/red" />
+                android:textColor="@color/red"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout
@@ -178,11 +164,13 @@
                 android:layout_marginEnd="16dp" />
 
             <TextView
+                android:id="@+id/text_moisture_warning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Moisture level critically low! \nWater the plants ASAP."
                 android:textSize="12sp"
-                android:textColor="@color/red" />
+                android:textColor="@color/red"
+                android:visibility="gone"/>
         </LinearLayout>
 
     </LinearLayout>

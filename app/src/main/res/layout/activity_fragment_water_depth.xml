@@ -14,48 +14,75 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
         android:gravity="center"
         android:text="Water Depth"
         android:textColor="@color/text_color"
         android:textSize="24sp"
-        android:layout_gravity="center" />  <!-- Center the TextView -->
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
 
     <!-- EditText between TextView and LineChart -->
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:hint="Enter Depth"
+        android:layout_marginTop="16dp"
+        android:hint="Enter Water Depth"
         android:textColor="@color/text_color"
-        android:inputType="number"
-        android:padding="8dp" />
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background" />
 
     <!-- LineChart for displaying the water level -->
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/white"
-        android:layout_marginTop="16dp" /> <!-- Add margin for spacing -->
-
+        android:layout_height="250dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/white" />
+    <!-- Submit Button -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Submit"
-        android:layout_gravity="center" /> <!-- Center the button -->
+        android:layout_gravity="center"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        android:background="@color/button_color" />
 
+    <!-- History Title -->
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:text="History"
         android:textColor="@color/text_color"
         android:textSize="24sp"
-        android:layout_gravity="center" /> <!-- Center the TextView -->
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Spinner for Selecting Past Batch -->
+    <Spinner
+        android:id="@+id/batchSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@color/white"
+        android:padding="12dp" />
+
+    <!-- Reset Button for Clearing the Chart -->
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Reset Chart"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        android:background="@color/button_color" />
 
 </LinearLayout>

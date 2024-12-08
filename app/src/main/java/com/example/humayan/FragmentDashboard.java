@@ -1,231 +1,295 @@
 package com.example.humayan;
-import static android.graphics.Color.WHITE;
 
-import static com.example.humayan.GeminiAPIHelper.getGeminiResponse;
-
-import android.content.res.AssetManager;
-import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
-import java.util.Locale;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
-import java.util.concurrent.Executors;
-
 
 public class FragmentDashboard extends Fragment {
 
-    private LineChart chart;
-    private ImageButton askGeminiButton;
+    private static final String TAG = "FragmentDashboard";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_fragment_dashboard, container, false);
+        fetchData();
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Dashboard");
 
-        // Find buttons by ID
+        // Initialize buttons and set click listeners
         ImageButton soilPHLevelButton = view.findViewById(R.id.button_ph);
         ImageButton soilMoistureButton = view.findViewById(R.id.button_moisture);
         ImageButton waterDepthButton = view.findViewById(R.id.button_water_depth);
         ImageButton weatherButton = view.findViewById(R.id.button_weather);
 
-        // Set onClickListeners
         soilPHLevelButton.setOnClickListener(v -> replaceFragment(new FragmentPH()));
         soilMoistureButton.setOnClickListener(v -> replaceFragment(new FragmentMoisture()));
         waterDepthButton.setOnClickListener(v -> replaceFragment(new FragmentWater()));
         weatherButton.setOnClickListener(v -> replaceFragment(new FragmentWeather()));
 
-        // Initialize the chart
-        chart = view.findViewById(R.id.chart);
-        setupChartData();
-        // Find and initialize Ask Gemini button
-        askGeminiButton = view.findViewById(R.id.button_ask_gemini);
-
-        // Set OnClickListener for Ask Gemini button
-        askGeminiButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAskGeminiDialog();
-            }
-        });
-
         return view;
     }
-    // Method to show a dialog with an EditText for user input and a button to trigger Gemini query
-    private void showAskGeminiDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Ask Gemini");
-        builder.setMessage("What would you like to ask about the warnings?");
 
-        final EditText userInput = new EditText(getContext());
-        userInput.setHint("Enter your question");
-        builder.setView(userInput);
+    private void fetchData() {
+        new AsyncTask<Void, Void, JSONObject>() {
+            @Override
+            protected JSONObject doInBackground(Void... voids) {
+                try {
+                    String phUrl = "https://zel.helioho.st/ph_level/fetch_ph_history.php";
+                    String waterUrl = "https://zel.helioho.st/water_depth/fetch_water_history.php";
+                    String moistureUrl = "https://zel.helioho.st/moisture_level/fetch_moisture_history.php";
 
-        builder.setPositiveButton("Ask", (dialog, which) -> {
-            String userPrompt = userInput.getText().toString().trim();
-            if (!userPrompt.isEmpty()) {
-                // Use ExecutorService to perform the network call in the background
-                Executors.newSingleThreadExecutor().execute(() -> {
-                    try {
-                        String response = GeminiAPIHelper.getGeminiResponse(userPrompt);
+                    JSONArray phData = fetchJsonData(phUrl);
+                    JSONArray waterData = fetchJsonData(waterUrl);
+                    JSONArray moistureData = fetchJsonData(moistureUrl);
 
-                        // Update the UI on the main thread
-                        new Handler(Looper.getMainLooper()).post(() ->
-                                Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show()
-                        );
-                    } catch (IOException | JSONException e) {
-                        // Handle error on the main thread
-                        new Handler(Looper.getMainLooper()).post(() ->
-                                Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                        );
-                        e.printStackTrace();
-                    }
-                });
+                    JSONObject latestPhData = getLatestData(phData, "timestamp");
+                    JSONObject latestWaterData = getLatestData(waterData, "timestamp");
+                    JSONObject latestMoistureData = getLatestData(moistureData, "timestamp");
+
+                    JSONObject result = new JSONObject();
+                    result.put("ph", latestPhData);
+                    result.put("water", latestWaterData);
+                    result.put("moisture", latestMoistureData);
+
+                    return result;
+
+                } catch (IOException | JSONException e) {
+                    Log.e(TAG, "Error fetching data", e);
+                }
+                return null;
             }
-        });
 
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-        builder.create().show();
+            @Override
+            protected void onPostExecute(JSONObject result) {
+                if (result != null) {
+                    try {
+                        JSONObject phData = result.getJSONObject("ph");
+                        JSONObject waterData = result.getJSONObject("water");
+                        JSONObject moistureData = result.getJSONObject("moisture");
+
+                        updateUI(phData, waterData, moistureData);
+                    } catch (JSONException e) {
+                        Log.e(TAG, "Error parsing result", e);
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }.execute();
     }
+    private Button helpButton = null; // Create a single instance
 
-    // Method to replace the current fragment
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);  // This adds the transaction to the back stack so the user can navigate back
-        fragmentTransaction.commit();
-    }
-
-    // Method to load JSON data and populate the chart
-    private void setupChartData() {
-        ArrayList<Entry> phEntries = new ArrayList<>();
-        ArrayList<Entry> moistureEntries = new ArrayList<>();
-        ArrayList<Entry> waterEntries = new ArrayList<>();
+    private void updateUI(JSONObject phData, JSONObject waterData, JSONObject moistureData) {
+        if (getView() == null) return;
 
         try {
-            // Read and parse the JSON files from the assets folder
-            JSONObject phData = loadJSONFromAsset("ph_data.json");
-            JSONObject moistureData = loadJSONFromAsset("moisture_data.json");
-            JSONObject waterData = loadJSONFromAsset("water_data.json");
+            // Get data values
+            double phLevel = phData.getDouble("ph_level");
+            double waterDepth = waterData.getDouble("water_depth");
+            double moistureLevel = moistureData.getDouble("moisture_level");
 
-            // Parse the data for pH levels
-            JSONArray phArray = phData.getJSONArray("phData");
-            for (int i = 0; i < phArray.length(); i++) {
-                JSONObject phObject = phArray.getJSONObject(i);
-                String timestamp = phObject.getString("timestamp");
-                float phLevel = (float) phObject.getDouble("phLevel");
-                long timeInMillis = convertTimestampToMillis(timestamp);
-                phEntries.add(new Entry(timeInMillis, phLevel));
+            // Define color values
+            int green = getResources().getColor(android.R.color.holo_green_dark);
+            int yellow = getResources().getColor(android.R.color.holo_orange_light);
+            int red = getResources().getColor(android.R.color.holo_red_dark);
+
+            // Initialize or update the button
+            if (helpButton == null) {
+                helpButton = new Button(getContext());
+                helpButton.setText("Request Help");
+                helpButton.setTextSize(12); // Adjust text size
+                helpButton.setPadding(10, 4, 10, 4); // Add padding for better appearance
+                helpButton.setVisibility(View.GONE); // Initially hide it
             }
 
-            // Parse the data for moisture levels
-            JSONArray moistureArray = moistureData.getJSONArray("moistureData");
-            for (int i = 0; i < moistureArray.length(); i++) {
-                JSONObject moistureObject = moistureArray.getJSONObject(i);
-                String timestamp = moistureObject.getString("timestamp");
-                float moistureLevel = (float) moistureObject.getDouble("moistureLevel");
-                long timeInMillis = convertTimestampToMillis(timestamp);
-                moistureEntries.add(new Entry(timeInMillis, moistureLevel));
+            // Update pH warning based on range
+            TextView phWarningView = getView().findViewById(R.id.tvAboutUs);
+            if (phLevel >= 6 && phLevel <= 7) {
+                phWarningView.setText("Perfect pH Level");
+                phWarningView.setTextColor(green);
+                phWarningView.setVisibility(View.VISIBLE);
+                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+            } else if (phLevel < 4) {
+                phWarningView.setText("pH Level critically Low");
+                phWarningView.setTextColor(red);
+                phWarningView.setVisibility(View.VISIBLE);
+                showHelpButton(helpButton, phWarningView);  // Show button next to pH warning
+            } else if (phLevel < 6) {
+                phWarningView.setText("pH Level Low");
+                phWarningView.setTextColor(yellow);
+                phWarningView.setVisibility(View.VISIBLE);
+                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+            } else { // phLevel > 7
+                phWarningView.setText("pH Level High");
+                phWarningView.setTextColor(yellow);
+                phWarningView.setVisibility(View.VISIBLE);
+                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
             }
 
-            // Parse the data for water levels
-            JSONArray waterArray = waterData.getJSONArray("waterData");
-            for (int i = 0; i < waterArray.length(); i++) {
-                JSONObject waterObject = waterArray.getJSONObject(i);
-                String timestamp = waterObject.getString("timestamp");
-                float waterLevel = (float) waterObject.getDouble("waterLevel");
-                long timeInMillis = convertTimestampToMillis(timestamp);
-                waterEntries.add(new Entry(timeInMillis, waterLevel));
+            // Update water depth warning based on rice crop guidelines
+            TextView waterWarningView = getView().findViewById(R.id.text_water_warning);
+            if (waterDepth < 10) {
+                waterWarningView.setText("Water depth critically low! Increase water supply immediately.");
+                waterWarningView.setTextColor(red);
+                waterWarningView.setVisibility(View.VISIBLE);
+                showHelpButton(helpButton, waterWarningView);  // Show button next to water depth warning
+            } else if (waterDepth <= 15) {
+                waterWarningView.setText("Water depth low! Consider adding more water.");
+                waterWarningView.setTextColor(yellow);
+                waterWarningView.setVisibility(View.VISIBLE);
+                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+            } else if (waterDepth > 20) {
+                waterWarningView.setText("Water depth too high! Avoid over-irrigation.");
+                waterWarningView.setTextColor(yellow);
+                waterWarningView.setVisibility(View.VISIBLE);
+                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+            } else {
+                waterWarningView.setText("Perfect Water Depth");
+                waterWarningView.setTextColor(green);
+                waterWarningView.setVisibility(View.VISIBLE);
+                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
             }
 
-            // pH Level - Red
-            LineDataSet phDataSet = new LineDataSet(phEntries, "pH Level");
-            phDataSet.setColor(Color.RED);  // Red for the line
-            phDataSet.setCircleColor(Color.RED);  // Red for the circles
+            // Update moisture level warning based on field capacity
+            TextView moistureWarningView = getView().findViewById(R.id.text_moisture_warning);
+            if (moistureLevel < 60) {
+                moistureWarningView.setText("Soil moisture critically low! Immediate irrigation needed.");
+                moistureWarningView.setTextColor(red);
+                moistureWarningView.setVisibility(View.VISIBLE);
+                showHelpButton(helpButton, moistureWarningView);  // Show button next to moisture warning
+            } else if (moistureLevel <= 80) {
+                moistureWarningView.setText("Soil moisture low. Monitor and water soon.");
+                moistureWarningView.setTextColor(yellow);
+                moistureWarningView.setVisibility(View.VISIBLE);
+                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+            } else {
+                moistureWarningView.setText("Perfect Soil Moisture Level");
+                moistureWarningView.setTextColor(green);
+                moistureWarningView.setVisibility(View.VISIBLE);
+                removeButtonIfExists(helpButton);  // Remove the button if it's not needed
+            }
 
-            // Water Level - Dark Blue
-            LineDataSet waterDataSet = new LineDataSet(waterEntries, "Water Level");
-            waterDataSet.setColor(Color.parseColor("#00008B"));  // Dark blue for the line
-            waterDataSet.setCircleColor(Color.parseColor("#00008B"));  // Dark blue for the circles
+            // Show or hide suggestions based on visibility of warnings
+            TextView suggestionsText = getView().findViewById(R.id.text_suggestion);
+            boolean anyWarningVisible =
+                    phWarningView.getVisibility() == View.VISIBLE ||
+                            waterWarningView.getVisibility() == View.VISIBLE ||
+                            moistureWarningView.getVisibility() == View.VISIBLE;
 
-            // Moisture Level - Sky Blue
-            LineDataSet moistureDataSet = new LineDataSet(moistureEntries, "Moisture Level");
-            moistureDataSet.setColor(Color.parseColor("#87CEEB"));  // Sky blue for the line
-            moistureDataSet.setCircleColor(Color.parseColor("#87CEEB"));  // Sky blue for the circles
+            suggestionsText.setVisibility(anyWarningVisible ? View.VISIBLE : View.GONE);
 
-            // Add the datasets to LineData
-            LineData lineData = new LineData(phDataSet, moistureDataSet, waterDataSet);
-
-            // Set the data to the chart
-            chart.setData(lineData);
-
-            chart.setBackgroundColor(WHITE);
-            // Disable x-axis labels
-            chart.getXAxis().setEnabled(false); // Disable x-axis
-
-            chart.invalidate(); // Refresh the chart
-
-            // Optional: Set description
-            Description description = new Description();
-            description.setText("Water, pH, and Moisture Levels");
-            chart.setDescription(description);
-
-        } catch (JSONException | IOException | ParseException e) {
-            e.printStackTrace();
+        } catch (JSONException e) {
+            Log.e(TAG, "Error updating UI", e);
         }
     }
 
-
-    // Helper method to load JSON from the assets folder
-    private JSONObject loadJSONFromAsset(String filename) throws IOException, JSONException {
-        AssetManager manager = getActivity().getAssets();
-        InputStream is = manager.open(filename);
-        Scanner scanner = new Scanner(is).useDelimiter("\\A");
-        String json = scanner.hasNext() ? scanner.next() : "";
-        is.close();
-        return new JSONObject(json);
+    private void showHelpButton(Button helpButton, TextView warningView) {
+        if (getView() != null && warningView != null) {
+            // Add the button dynamically to the parent view
+            ViewGroup parentView = (ViewGroup) warningView.getParent();
+            if (parentView != null && helpButton.getParent() == null) {
+                parentView.addView(helpButton);
+                helpButton.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
-    // Helper method to convert timestamp to milliseconds for chart
-    private long convertTimestampToMillis(String timestamp) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault());
-        Date date = sdf.parse(timestamp);
-        return date != null ? date.getTime() : 0;
+    private void removeButtonIfExists(Button helpButton) {
+        if (helpButton != null && helpButton.getParent() != null) {
+            ((ViewGroup) helpButton.getParent()).removeView(helpButton);
+        }
+    }
+
+    private void sendHelpMessage(String message) {
+        // Code to send message to Gemini chat
+        Log.d(TAG, "Sending help message: " + message);
+        // Add your code to send the message (e.g., using an API or Intent)
+    }
+
+    private JSONArray fetchJsonData(String urlString) throws IOException, JSONException {
+        HttpURLConnection urlConnection = null;
+        try {
+            URL url = new URL(urlString);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            Scanner scanner = new Scanner(urlConnection.getInputStream());
+            StringBuilder response = new StringBuilder();
+
+            while (scanner.hasNext()) {
+                response.append(scanner.nextLine());
+            }
+
+            Log.d(TAG, "Response: " + response.toString());
+            return new JSONArray(response.toString());
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+    }
+
+    private JSONObject getLatestData(JSONArray data, String timestampKey) throws JSONException {
+        if (data == null || data.length() == 0) {
+            return null;
+        }
+
+        JSONObject latestData = null;
+        long latestTimestamp = Long.MIN_VALUE; // Use a very small timestamp value initially
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+
+        // Loop through all the data and find the one with the latest timestamp
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject dataObject = data.getJSONObject(i);
+            String timestampString = dataObject.getString(timestampKey); // Use the specified timestamp key
+
+            try {
+                Date date = dateFormat.parse(timestampString); // Parse the date string
+                long timestamp = date.getTime(); // Get the time in milliseconds
+
+                // Check if this data has the latest timestamp
+                if (timestamp > latestTimestamp) {
+                    latestTimestamp = timestamp;
+                    latestData = dataObject;
+                }
+            } catch (ParseException e) {
+                Log.e(TAG, "Error parsing timestamp: " + timestampString, e);
+            }
+        }
+
+        return latestData;
+    }
+
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
-
