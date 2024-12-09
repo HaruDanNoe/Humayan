@@ -1,3 +1,4 @@
+
 package com.example.humayan;
 
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -51,7 +53,9 @@ public class FragmentHistory extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_fragment_history, container, false);
-
+        if (getActivity() instanceof AppCompatActivity) {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("History");
+        }
         // Initialize Volley request queue
         requestQueue = Volley.newRequestQueue(getActivity());
 
@@ -289,4 +293,3 @@ public class FragmentHistory extends Fragment {
         transaction.commit();
     }
 }
-

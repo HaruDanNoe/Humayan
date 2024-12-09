@@ -18,7 +18,7 @@
     <item
         android:id="@+id/nav_insect"
         android:icon="@drawable/ic_insect"
-        android:title="Settings" />
+        android:title="Insect Identification" />
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings_24"

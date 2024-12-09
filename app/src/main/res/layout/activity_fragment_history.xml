@@ -9,10 +9,12 @@
     <Spinner
         android:id="@+id/spinner_data_type"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/spinner_border"
         android:padding="15dp"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/the"/>
 
+    <!-- Spinner to sort by year -->
     <Spinner
         android:id="@+id/spinner_sort_by_year"
         android:layout_width="wrap_content"
@@ -20,14 +22,13 @@
         android:layout_marginTop="10dp"
         android:padding="8dp"
         android:background="@drawable/spinner_border"
-        android:layout_gravity="right"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@id/spinner_data_type" />
-
+        android:layout_gravity="end"
+        android:textColor="@color/the"/>
 
     <!-- ListView to display data -->
     <ListView
         android:id="@+id/listView_data"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>

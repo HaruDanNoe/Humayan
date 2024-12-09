@@ -1,82 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@color/white"> <!-- Set a background color -->
+    android:background="@drawable/bg"
+    android:rotationX="-360">
 
-    <!-- App Logo -->
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.8"
+        android:background="@color/hum_secpri" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher"
-        android:contentDescription="@string/app_name"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="32dp"/>
+        android:orientation="vertical"
+        android:padding="28dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Humayan"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp" /> <!-- Add bottom margin for spacing -->
+        <!-- App Logo -->
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/ic_launcher" />
 
-    <EditText
-        android:id="@+id/emailEditText"
+        <!-- App Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-black"
+            android:text="Humayan"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Track. Manage. Grow."
+            android:textColor="@color/white"
+            android:textSize="15sp"
+           />
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:minHeight="56dp"
-        android:padding="12dp"
-        android:textSize="16sp"
-        android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="16dp"
-        android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="10dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-20dp"
+        android:padding="30dp"
+        app:cardCornerRadius="28dp">
 
-    <EditText
-        android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:minHeight="56dp"
-        android:padding="12dp"
-        android:textSize="16sp"
-        android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="24dp"
-        android:drawableStart="@drawable/ic_password"
-        android:drawablePadding="10dp" />
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:minHeight="56dp"
-        android:textSize="18sp"
-        android:backgroundTint="@color/primary_green"
-        android:textColor="@android:color/white"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp"/> <!-- Add bottom margin for spacing -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="28dp">
 
-    <TextView
-        android:id="@+id/registerLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don't have an account? Register here"
-        android:textColor="@color/colorAccent"
-        android:textSize="16sp"
-        android:minHeight="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:clickable="true"
-        android:focusable="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome"
+                android:textColor="@color/hum_primary"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please login with your information" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="38dp" />
+
+            <EditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:alpha="0.7"
+                android:textColor="@color/the"
+                android:background="@drawable/rounded_edittext"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:hint="Email"
+                android:minHeight="56dp"
+                android:padding="12dp"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/rounded_edittext"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="10dp"
+                android:textColor="@color/the"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:minHeight="56dp"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:alpha="0.7"
+
+                />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/primary_green"
+                android:minHeight="56dp"
+                android:padding="12dp"
+                android:text="Login"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:background="@drawable/rounded_edittext"
+                /> <!-- Add bottom margin for spacing -->
+
+            <TextView
+                android:id="@+id/registerLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="48dp"
+                android:text="Don't have an account? Register here."
+                android:textColor="@color/hum_secpri"
+                android:alpha="0.7"
+                android:textSize="16sp" />
+
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="40dp" />
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -84,4 +166,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
-</LinearLayout>
+</RelativeLayout>

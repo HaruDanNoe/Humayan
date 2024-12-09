@@ -32,7 +32,7 @@ public class FragmentAboutUs extends Fragment {
 
         // Set the title for the toolbar
         if (getActivity() instanceof AppCompatActivity) {
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("About Us");
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("About");
             ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Show back button
         }
 

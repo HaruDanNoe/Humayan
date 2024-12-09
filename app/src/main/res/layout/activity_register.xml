@@ -15,49 +15,71 @@
         android:layout_gravity="center"
         android:src="@mipmap/ic_launcher"
         android:contentDescription="@string/app_name"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:textSize="24sp"
+        android:text="Sign Up"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:layout_gravity="center"
-        android:layout_marginBottom="24dp" /> <!-- Add bottom margin for spacing -->
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create account to Track, Manage, and Grow Crops."
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        />
+
+
 
     <EditText
         android:id="@+id/lastNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Last Name"
-        android:minHeight="56dp"
+        android:minHeight="48dp"
         android:padding="12dp"
-        android:textSize="16sp"
+        android:textSize="13sp"
+        android:textColor="@color/the"
         android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="16dp" /> <!-- Add bottom margin for spacing -->
+        android:layout_marginBottom="16dp"
+        android:alpha="0.7"
+        />
 
     <EditText
         android:id="@+id/firstNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="First Name"
-        android:minHeight="56dp"
+        android:minHeight="48dp"
         android:padding="12dp"
-        android:textSize="16sp"
+        android:textSize="13sp"
+        android:textColor="@color/the"
         android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="16dp" /> <!-- Add bottom margin for spacing -->
+        android:layout_marginBottom="16dp"
+        android:alpha="0.7"
+        />
 
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:minHeight="56dp"
+        android:minHeight="48dp"
         android:padding="12dp"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="16dp" /> <!-- Add bottom margin for spacing -->
+        android:layout_marginBottom="16dp"
+        android:alpha="0.7"
+        /> <!-- Add bottom margin for spacing -->
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -65,11 +87,13 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
-        android:minHeight="56dp"
+        android:minHeight="48dp"
         android:padding="12dp"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="16dp" /> <!-- Add bottom margin for spacing -->
+        android:layout_marginBottom="16dp"
+        android:alpha="0.7"
+        />
 
     <EditText
         android:id="@+id/confirmPasswordEditText"
@@ -77,35 +101,40 @@
         android:layout_height="wrap_content"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        android:minHeight="56dp"
+        android:minHeight="48dp"
         android:padding="12dp"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:background="@drawable/rounded_edittext"
-        android:layout_marginBottom="24dp" /> <!-- Add bottom margin for spacing -->
+        android:layout_marginBottom="24dp"
+        android:alpha="0.7"
+        />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:minHeight="56dp"
-        android:textSize="18sp"
-        android:backgroundTint="@color/green"
-        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/primary_green"
+        android:minHeight="48dp"
         android:padding="12dp"
-        android:layout_marginBottom="16dp"/> <!-- Add bottom margin for spacing -->
+        android:text="Register"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittext"/> <!-- Add bottom margin for spacing -->
     <TextView
         android:id="@+id/loginLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an account? Login here"
-        android:textColor="@color/colorAccent"
-        android:textSize="16sp"
-        android:minHeight="48dp"
+        android:text="Already have an account? Login here."
+        android:layout_marginBottom="24dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:clickable="true"
-        android:focusable="true"/>
+        android:focusable="true"
+        android:textColor="@color/hum_secpri"
+        android:alpha="0.7"
+        android:textSize="14sp"
+        />
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

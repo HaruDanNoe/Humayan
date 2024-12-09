@@ -35,7 +35,7 @@
                 android:inputType="text"
                 android:textColor="@color/text_color"
                 android:textColorHint="#939393"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:layout_centerVertical="true" />
 
             <ImageView
@@ -91,27 +91,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="210dp"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:layout_marginTop="100dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:includeFontPadding="false"
                 android:textColor="@color/text_color"
                 android:textSize="18sp"
-                android:includeFontPadding="false"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color"
-                android:textSize="16sp"
                 android:layout_marginTop="8dp"
-                android:includeFontPadding="false" />
+                android:includeFontPadding="false"
+                android:textColor="@color/text_color"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -185,19 +185,19 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/tem_down"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="38dp" />
+                    android:layout_marginStart="38dp"
+                    android:src="@drawable/tem_down" />
 
                 <TextView
                     android:id="@+id/min_temp"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginStart="80dp"
                     android:gravity="center"
                     android:padding="5dp"
                     android:text=" — "
-                    android:layout_marginStart="80dp"
                     android:textColor="@color/text_color"
                     android:textSize="16sp" />
 
@@ -222,19 +222,19 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/tem_up"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="38dp" />
+                    android:layout_marginStart="38dp"
+                    android:src="@drawable/tem_up" />
 
                 <TextView
                     android:id="@+id/max_temp"
-                    android:layout_width="80dp"
+                    android:layout_width="84dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginStart="80dp"
                     android:gravity="center"
                     android:padding="5dp"
                     android:text=" — "
-                    android:layout_marginStart="80dp"
                     android:textColor="@color/text_color"
                     android:textSize="16sp" />
 
